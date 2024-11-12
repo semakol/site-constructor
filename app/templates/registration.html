@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index-style.css') }}">
+    <title>Регистрация</title>
+</head>
+<body>
+<main>
+    <section class="sec-form">
+        <form method="post" action="">
+            <h1 class="reg-h1">Регистрация</h1>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <br>
+            <p>{{ messages[0] }}</p>
+            <br>
+            {% endif %}
+            {% endwith %}
+            {{ form.hidden_tag() }}
+            {{ form.name(class_='field', placeholder_='Имя') }}
+            {{ form.subName(class_='field', placeholder_='Фамилия') }}
+            {{ form.username(class_='field', placeholder_='Логин') }}
+            {{ form.password(class_='field', placeholder_='Пароль') }}
+            {{ form.repPassword(class_='field', placeholder_='Повторите пароль') }}
+            <div class="radio">
+            {% for subfield in form.role %}
+            <label>{{ subfield() }} {{ subfield.label.text }}</label>
+            {% endfor %}
+            </div>
+            {{ form.submit(class_='field submit') }}
+        </form>
+    </section>
+</main>
+</body>
+</html>
