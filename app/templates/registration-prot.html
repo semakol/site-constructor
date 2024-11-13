@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/index-style-prot.css">
+    <title>Регистрация</title>
+</head>
+<body>
+    <main>
+        <section class="sec-form">
+            <form method="post" action="">
+                <h1 class="reg-h1">Регистрация</h1>
+                <input type="text" placeholder="Имя" class = 'field' required>
+                <input type="text" placeholder="Фамилия" class = 'field' required>
+                <input type="text" placeholder="Логин" class = 'field' required>
+                <input type="password" placeholder="Пароль" class = 'field' required>
+                <input type="password" placeholder="Повторите пароль" class = 'field' required>
+                <div class="radio">
+                    <label class="first-label">
+                        <input type="radio" name="question-one" value="r" required> Я редактор
+                    </label>
+                    <label>
+                        <input type="radio" name="question-one" value="v" required> Я стажер
+                    </label>
+                </div>
+                <input type="submit" value="Зарегистрироваться" class = 'field submit'>
+                <a href="internship-prot.html" class = 'field submit button' >Сделать стажировку</a>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

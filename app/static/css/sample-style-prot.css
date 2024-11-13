@@ -1,0 +1,21 @@
+body{
+    font-family: 'Manrope';
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+.new-block{
+    padding: 9px 35px 17px 35px; /* Убираем внутренние отступы */
+    border: none; /* Убираем границу */
+    font: inherit; /* Наследуем шрифт от родителя */
+    color: inherit; /* Наследуем цвет текста от родителя */
+    background-color: #FFF1E3; /* Прозрачный фон */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    border-radius: 20px; 
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 24px;
+    margin-top: 50px;
+    margin-left: 42%;
+}

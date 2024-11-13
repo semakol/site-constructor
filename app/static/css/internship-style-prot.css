@@ -1,0 +1,83 @@
+body{
+    font-family: 'Manrope';
+    color: black;
+    margin: 0;
+    background-image: url('/img/Vmake-1731352358\ 1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+}
+section{
+    margin-bottom: 50px;
+}
+.hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+h1{
+    font-size: 96px;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 26px 122px;
+    border-radius: 20px; 
+    border-color: #FF7700;
+    border-width: 2px;
+    border-style: solid;
+    max-width: 1066px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    background-color: #FFF8F1;
+    opacity: 0.95;
+}
+h2{
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    gap:60px;
+    margin:0;
+    padding:0;
+}
+
+li{
+    margin: 0;
+    padding: 0;
+    width: 296px;
+    height: 415px;
+    background-color: white;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.5);
+}
+
+.white{
+    height: 249px;
+    width: 296px;
+    border-bottom: 2px solid #AAAAAA;
+    margin-bottom: 5px;
+}
+h3, h4{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+h3{
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+h4{
+    color: #3C3C3C;
+    font-size: 15px;
+}

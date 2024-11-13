@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/sample-style-prot.css">
+    <title>Конструктор</title>
+</head>
+<body>
+    <main>
+        <button class="new-block" onclick="addBlockBar()">Добавить блоки</button>
+        <section class="block-bar hidden">
+            <div class="title-bar">
+                <h4>Библиотека шаблонов</h4>
+                <img src = '/img/cross.png' height="48px" width="51px">
+            </div>
+            <ul class="block-list">
+                <li class="block-item">
+                    <button onclick="addBlockBar('Обложка')">Обложка</button>
+                </li>
+                <li class="block-item">
+                    <button onclick="addBlockBar('Информация о компании')">Информация о компании</button>
+                </li>
+                <li class="block-item">
+                    <button onclick="addBlockBar('Перспективы дальнейшей работы')">Перспективы дальнейшей работы</button>
+                </li>
+                <li class="block-item">
+                    <button onclick="addBlockBar('Кнопка')">Кнопка</button>
+                </li>
+                <li class="block-item">
+                    <button onclick="addBlockBar('Контакты')">Контакты</button>
+                </li>
+            </ul>
+        </section>
+        <template>
+
+        </template>
+    </main>
+</body>
+<script src="../js/new-block.js"></script>
+</html>
