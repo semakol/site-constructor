@@ -3,19 +3,140 @@ body{
     color: black;
     margin: 0;
     padding: 0;
+    display: flex;            
+    justify-content: center;     
+    align-items: center;
+    overflow-x: hidden;
 }
 .new-block{
-    padding: 9px 35px 17px 35px; /* Убираем внутренние отступы */
-    border: none; /* Убираем границу */
-    font: inherit; /* Наследуем шрифт от родителя */
-    color: inherit; /* Наследуем цвет текста от родителя */
-    background-color: #FFF1E3; /* Прозрачный фон */
-    cursor: pointer; /* Курсор в виде руки при наведении */
+    padding: 9px 35px 17px 35px;
+    border: none; 
+    font: inherit;
+    color: inherit; 
+    background-color: #FFF1E3;
+    cursor: pointer; 
     border-radius: 20px; 
     border-color: black;
     border-width: 2px;
     border-style: solid;
     font-size: 24px;
     margin-top: 50px;
-    margin-left: 42%;
+    margin-bottom: 9px;
+    cursor:pointer;
+    margin-left: 43%;
+}
+
+.block-bar{
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 20%; 
+    height: 100%; 
+    background-color: #FFF8F1;
+}
+.exit{
+    padding: 0;
+    border: none;
+    font: inherit; 
+    color: inherit;
+    background-color: inherit;
+    cursor:pointer;
+}
+.title-bar{
+    padding: 4px 19px 0px 6px;
+    display: flex;
+    gap: 42px;
+    font-size: 24px;
+    color: #535353;
+    border-bottom: 2px solid #DBDBDB; 
+    margin-bottom: 41px;
+    font-weight:normal;
+}
+.title-bar h4{
+    margin: 0;
+    padding: 0;
+    margin-top: 9px;
+    white-space: nowrap;
+}
+.block-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap:23px
+    
+}
+.block-item{
+    border-bottom: 2px solid #DBDBDB; 
+    padding-bottom: 2px;
+}
+.block-item button{
+    padding: 0;
+    border: none;
+    font: inherit; 
+    color: inherit;
+    background-color: inherit;
+    font-size: 20px;
+    cursor:pointer;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.off{
+    background-color: white;
+    opacity: 0.5;
+}
+
+h1{
+    font-size: 90px;
+    margin: 0;
+
+}
+h2{
+    font-size: 40px;
+    font-weight: lighter;
+    margin: 0;
+}
+.page{
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header, .titles, .buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.buttons{
+    margin: 63px 164px 48px 164px ;
+    flex-direction: row;
+    width: 90vw;
+    max-width: 100%;
+    gap:43px;
+}
+
+.content{
+    margin-right: 70vw;
+}
+
+.content, .setting, .trash, .on-off{
+    border: none; 
+    font: inherit;
+    color: inherit; 
+    background-color: #E6E6E6;
+    cursor: pointer; 
+    border-radius: 20px; 
+    border-color: none;
+    font-size: 20px;
+    padding: 5px 11px;
+}
+.trash, .on-off{
+    padding: 8px 11px 2px 11px;
 }
