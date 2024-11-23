@@ -59,13 +59,13 @@
                 <p>Фоновое изображение</p>
                 <input class="input-img" type="file" value="Загрузить файл">
                 <p>Только цвет</p>
-                <input type="color" class="head-color" name="head" value="#"/>
+                <input type="color" class="head-color" name="head" value=""/>
             </div>
         </section>
         <section class="info hidden">
             <div class="buttons">
                 <button class="info-setting setting">Настройки</button>
-                <button class="info-content content">Контент</button>
+                <button class="info-content content" onclick="{document.querySelector('.info-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
             </div>
@@ -73,17 +73,39 @@
                 <h2 class="info-h2">Информация о компании</h2>
                 <p class="info-p">Текст</p>
             </div>
+            <div class="content-bar info-bar hidden">
+                <button class="save" onclick="infoClick()">Сохранить</button>
+                <p>Заголовок</p>
+                <input type="text" value="Информация о компании" class="input-info-0">
+                <p>Текст</p>
+                <textarea class="input-info-1">Текст</textarea>
+                <p>Фоновое изображение</p>
+                <input class="input-img-info" type="file" value="Загрузить файл">
+                <p>Только цвет</p>
+                <input type="color" class="info-color" name="info" value="#ffffff"/>
+            </div>
         </section>
         <section class="prospects hidden">
             <div class="buttons">
                 <button class="info-setting setting">Настройки</button>
-                <button class="info-content content">Контент</button>
+                <button class="info-content content" onclick="{document.querySelector('.prospects-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
             </div>
             <div class="prospects-div">
-                <h2 class="info-h2">Перспективы</h2>
-                <p class="info-p">Текст</p>
+                <h2 class="prospects-h2">Перспективы</h2>
+                <p class="prospects-p">Текст</p>
+            </div>
+            <div class="content-bar prospects-bar hidden">
+                <button class="save" onclick="prospectsClick()">Сохранить</button>
+                <p>Заголовок</p>
+                <input type="text" value="Перспективы" class="input-prospects-0">
+                <p>Текст</p>
+                <textarea class="input-prospects-1">Текст</textarea>
+                <p>Фоновое изображение</p>
+                <input class="input-img-prospects" type="file" value="Загрузить файл">
+                <p>Только цвет</p>
+                <input type="color" class="prospects-color" name="prospects" value="#ffffff"/>
             </div>
         </section>
         <section class="button hidden">

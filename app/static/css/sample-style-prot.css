@@ -122,7 +122,6 @@ body{
     margin: 0;
     padding: 0;
     margin-top: 9px;
-    white-space: nowrap;
 }
 .block-list{
     list-style: none;
@@ -144,6 +143,7 @@ body{
     background-color: inherit;
     font-size: 20px;
     cursor:pointer;
+    text-align:left;
 }
 
 .hidden{
@@ -151,8 +151,8 @@ body{
 }
 
 .off{
-    background-color: white;
-    opacity: 0.5;
+    background-color: black;
+    opacity: 0.5 !important;
 }
 
 h1{
@@ -302,7 +302,7 @@ section section{
     --c: #FFF1E3; /* цвет */
 }
 
-.info-h2 {
+.info-h2, .prospects-h2 {
     margin-bottom: 36px;
     color: black;
     line-height: calc(1.2em + 2 * var(--h));
@@ -431,8 +431,9 @@ p{
     margin-left: 1em;
 }
 
-.content-bar input {
-    margin-bottom: 2.5em;
+.content-bar input, textarea {
+    margin-left: 1em;
+    margin-bottom: 2em;
     font-size: 1.25rem;
     color: rgba(0, 0, 0, 1);
     background-color: rgba(217, 217, 217, 1);
@@ -442,8 +443,13 @@ p{
     padding-left: 1em;
     border-radius: 1.5em;
     box-sizing: border-box;
+    border-width: 0.1em;
 }
-
+.input-img{
+    border-style: solid;
+    border-color: #FF7700;
+    border-radius: 0 !important;
+}
 .content-bar p {
     color: rgba(99, 99, 99, 1);
     font-size: 1.5rem;
@@ -470,8 +476,15 @@ p{
     }
 }
 
-.head-color{
+.head-color,.info-color{
     border-radius: 0 !important;
     padding: 0 !important;
     width: 45% !important;
+}
+
+textarea{
+    font-family: 'Manrope';
+    color: black;
+    font-size: 1.25em;
+    padding-bottom: 3em;
 }
