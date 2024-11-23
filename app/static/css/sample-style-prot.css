@@ -469,3 +469,9 @@ p{
         font-size: 1.25rem;
     }
 }
+
+.head-color{
+    border-radius: 0 !important;
+    padding: 0 !important;
+    width: 45% !important;
+}
