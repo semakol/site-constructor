@@ -38,8 +38,8 @@
         </section>
         <section class="header hidden">
             <div class="buttons">
-                <button class="setting">Настройки</button>
-                <button class="content">Контент</button>
+                <button class="header-setting setting">Настройки</button>
+                <button class="header-content content" onclick="{document.querySelector('.header-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
             </div>
@@ -48,18 +48,70 @@
                 <h1 class="title-1">Заголовок</h1>
                 <h2 class="tile-2">Описание</h2>
             </div>
-            <div class="content-bar hidden">
+            <div class="content-bar header-bar hidden">
+                <button class="save" onclick="headerClick()">Сохранить</button>
                 <p>Надзаголовок</p>
                 <input type="text" value="Надзаголовок" class="input-title-0">
                 <p>Заголовок</p>
-                <input type="text" value="Заголовок" class="input-title-0">
+                <input type="text" value="Заголовок" class="input-title-1">
                 <p>Описание</p>
-                <input type="text" value="Описание" class="input-title-0">
+                <input type="text" value="Описание" class="input-title-2">
                 <p>Фоновое изображение</p>
-                <input type="file" value="Загрузить файл">
+                <input class="input-img" type="file" value="Загрузить файл">
+            </div>
+        </section>
+        <section class="info hidden">
+            <div class="buttons">
+                <button class="info-setting setting">Настройки</button>
+                <button class="info-content content">Контент</button>
+                <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
+                <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
+            </div>
+            <div class="info-div">
+                <h2 class="info-h2">Информация о компании</h2>
+                <p class="info-p">Текст</p>
+            </div>
+        </section>
+        <section class="prospects hidden">
+            <div class="buttons">
+                <button class="info-setting setting">Настройки</button>
+                <button class="info-content content">Контент</button>
+                <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
+                <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
+            </div>
+            <div class="prospects-div">
+                <h2 class="info-h2">Перспективы</h2>
+                <p class="info-p">Текст</p>
+            </div>
+        </section>
+        <section class="button hidden">
+            <div class="buttons">
+                <button class="info-setting setting">Настройки</button>
+                <button class="info-content content">Контент</button>
+                <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
+                <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
+            </div>
+            <button class="really-button">Кнопка</button>
+        </section>
+        <section class="contact hidden">
+            <div class="buttons">
+                <button class="info-setting setting">Настройки</button>
+                <button class="info-content content">Контент</button>
+                <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
+                <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
+            </div>
+            <div class="contact-div">
+                <div class="contact-data">
+                    <h2 class="info-h2">Контакты</h2>
+                    <!-- <ul class="contact-list">
+                        <li></li>
+                    </ul> -->
+                </div>
+                <div class="map"></div>
             </div>
         </section>
     </main>
 </body>
 <script src="../static/js/new-block.js"></script>
+<script src="../static/js/content-bar.js"></script>
 </html>

@@ -8,50 +8,116 @@ body{
     align-items: center;
     overflow-x: hidden;
 }
-.new-block{
-    padding: 9px 35px 17px 35px;
+.new-block {
+    padding: 0.5em 2em;
     border: none; 
     font: inherit;
     color: inherit; 
     background-color: #FFF1E3;
     cursor: pointer; 
-    border-radius: 20px; 
+    border-radius: 1.25em; 
     border-color: black;
-    border-width: 2px;
+    border-width: 0.125em;
     border-style: solid;
-    font-size: 24px;
-    margin-top: 50px;
-    margin-bottom: 9px;
-    cursor:pointer;
-    margin-left: 43%;
+    font-size: 1.5rem;
+    margin-top: 3.125em;
+    margin-bottom: 0.5em;
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
 
-.block-bar{
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .new-block {
+        padding: 0.4em 1.5em;
+        font-size: 1.2rem;
+        margin-top: 2em;
+        margin-bottom: 0.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    .new-block {
+        padding: 0.3em 1em;
+        font-size: 1rem;
+        margin-top: 1.5em;
+        margin-bottom: 0.3em;
+    }
+}
+
+
+.block-bar {
     position: fixed;
     top: 0;
     left: 0; 
-    width: 20%; 
     height: 100%; 
     background-color: #FFF8F1;
+    z-index: 10;
 }
-.exit{
+
+/* Адаптивная верстка для .block-bar */
+@media (max-width: 1024px) {
+    .block-bar {
+        width: 30%;
+    }
+}
+
+@media (max-width: 768px) {
+    .block-bar {
+        width: 40%;
+    }
+}
+
+@media (max-width: 480px) {
+    .block-bar {
+        width: 50%;
+    }
+}
+
+.exit {
     padding: 0;
     border: none;
     font: inherit; 
     color: inherit;
     background-color: inherit;
-    cursor:pointer;
+    cursor: pointer;
 }
-.title-bar{
-    padding: 4px 19px 0px 6px;
+
+.title-bar {
+    padding: 0.25em 1.2em 0 0.4em;
     display: flex;
-    gap: 42px;
-    font-size: 24px;
+    gap: 1.2em;
+    font-size: 1.5rem;
     color: #535353;
-    border-bottom: 2px solid #DBDBDB; 
-    margin-bottom: 41px;
-    font-weight:normal;
+    border-bottom: 0.125em solid #DBDBDB; 
+    margin-bottom: 2.5em;
+    font-weight: normal;
 }
+
+/* Адаптивная верстка для .title-bar */
+@media (max-width: 1024px) {
+    .title-bar {
+        font-size: 1.25rem;
+        gap: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .title-bar {
+        font-size: 1rem;
+        gap: 0.5em;
+        padding: 0.2em 1em 0 0.3em;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-bar {
+        font-size: 0.875rem;
+        gap: 0.3em;
+        padding: 0.15em 0.75em 0 0.25em;
+    }
+}
+
 .title-bar h4{
     margin: 0;
     padding: 0;
@@ -65,7 +131,6 @@ body{
     display: flex;
     flex-direction: column;
     gap:23px
-    
 }
 .block-item{
     border-bottom: 2px solid #DBDBDB; 
@@ -93,12 +158,21 @@ body{
 h1{
     font-size: 90px;
     margin: 0;
-
+    color: #FFFFFF;
+    padding: 10px 30px 13px 35px;
+    border-radius: 20px; 
+    border-color: #FF7700;
+    border-width: 2px;
+    border-style: solid;
+    margin-bottom: 72px;
+    background-color: #D9D9D9;
+    background-color: rgba(217, 217, 217, 0.2);
 }
 h2{
     font-size: 40px;
-    font-weight: lighter;
     margin: 0;
+    color: #FFFFFF;
+    margin-bottom: 174px;
 }
 .page{
     width: 100vw;
@@ -108,23 +182,100 @@ h2{
     justify-content: center;
     align-items: center;
 }
-.header, .titles, .buttons{
+.header, .titles, .buttons, .info,.prospects,.button,.contact{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
+.header {
+    position: relative;
+    background-image: url('../img/title-1.jpg');
+    background-repeat: no-repeat;
+}
+
+.info, .prospects, .button, .contact{
+    width: 100vw;
+    max-width: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+}
+.titles, .buttons{
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    text-align: center; 
+}
 .buttons{
-    margin: 63px 164px 48px 164px ;
+    color: black;
+}
+.header::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.buttons {
+    margin: 3.125em 10.25em 3em 10.25em;
     flex-direction: row;
     width: 90vw;
     max-width: 100%;
-    gap:43px;
+    gap: 2.6875em;
 }
 
-.content{
-    margin-right: 70vw;
+/* Адаптивная верстка для .buttons */
+@media (max-width: 1024px) {
+    .buttons {
+        margin: 2.5em 8em 2.5em 8em;
+        gap: 2em;
+    }
 }
+
+@media (max-width: 768px) {
+    .buttons {
+        margin: 2em 5em 2em 5em;
+        flex-direction: column;
+        gap: 1.5em;
+        width: 95vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .buttons {
+        margin: 1.5em 2em 1.5em 2em;
+        gap: 1em;
+        width: 100vw;
+    }
+}
+
+
+.content {
+    margin-right: 60vw;
+}
+
+/* Адаптивная верстка для .content */
+@media (max-width: 1024px) {
+    .content {
+        margin-right: 50vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        margin-right: 40vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        margin-right: 30vw;
+    }
+}
+
 
 .content, .setting, .trash, .on-off{
     border: none; 
@@ -139,4 +290,182 @@ h2{
 }
 .trash, .on-off{
     padding: 8px 11px 2px 11px;
+}
+
+section section{
+    border-bottom: 2px solid #C9C9C9; 
+}
+
+:root {
+    --w: 20px; /* ширина штрихов */
+    --h: 5px; /* высота штрихов */
+    --c: #FFF1E3; /* цвет */
+}
+
+.info-h2 {
+    margin-bottom: 36px;
+    color: black;
+    line-height: calc(1.2em + 2 * var(--h));
+    padding-bottom: calc(2 * var(--h));
+    background: bottom/calc(2 * var(--w)) calc(2 * var(--h)) space no-repeat;
+    --_g: calc(var(--w) / 2) top 50%, var(--c) 90%, #0000 105%;
+    background-image:
+        radial-gradient(var(--h) at left var(--_g)),
+        radial-gradient(var(--h) at right var(--_g)),
+        linear-gradient(90deg, #0000 calc(var(--w) / 2), var(--c) 0 calc(3 * var(--w) / 2), #0000 0);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    text-align: center;
+}
+p{
+    margin: 0;
+    font-size: 24px;
+    padding-bottom: 15px;
+}
+.info-div, .prospects-div{
+    padding: 20px 100px 13px 100px;
+    border-radius: 20px; 
+    border-color: #FF7700;
+    border-width: 2px;
+    border-style: solid;
+    margin-bottom: 101px;
+    max-width: 70%;
+    width: 70vw;
+}
+
+.prospects-div{
+    padding: 20px 50px 13px 50px;
+    max-width: 60%;
+    width: 60vw;
+}
+
+.really-button{
+    padding: 11px 74px;
+    border-radius: 40px; 
+    border-color: black;
+    color: black;
+    font-size: 32px;
+    border-width: 2px;
+    border-style: solid;
+    background-color: #FF7700;
+    margin-bottom: 90px;
+}
+
+.content-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(231, 231, 231, 1);
+    z-index: 10;
+    width: 33%;
+    padding-bottom: 6.25em; /* Переводим пиксели в относительные величины */
+    box-sizing: border-box;
+}
+
+/* Адаптивная верстка для .content-bar */
+@media (max-width: 1024px) {
+    .content-bar {
+        width: 40%;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-bar {
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-bar {
+        width: 70%;
+    }
+}
+
+.content-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(231, 231, 231, 1);
+    z-index: 10;
+    width: 33%;
+    padding-bottom: 6em;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+    .content-bar {
+        width: 40%;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-bar {
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-bar {
+        width: 70%;
+    }
+}
+
+.save {
+    color: rgba(255, 255, 255, 1);
+    font-size: 1.5rem;
+    border-width: 0.125em;
+    border-style: solid;
+    background-color: black;
+    margin-bottom: 1em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    width: 100%;
+    border-bottom-left-radius: 0.625em;
+    border-bottom-right-radius: 0.625em;
+    padding-left: 0;
+}
+
+.content-bar input, .content-bar p {
+    margin-left: 1em;
+}
+
+.content-bar input {
+    margin-bottom: 2.5em;
+    font-size: 1.25rem;
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(217, 217, 217, 1);
+    width: 90%;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    padding-left: 1em;
+    border-radius: 1.5em;
+    box-sizing: border-box;
+}
+
+.content-bar p {
+    color: rgba(99, 99, 99, 1);
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .save {
+        font-size: 1.25rem;
+        padding-top: 1.25em;
+        padding-bottom: 1.25em;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-bar input {
+        font-size: 1rem;
+        padding-left: 0.875em;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-bar p {
+        font-size: 1.25rem;
+    }
 }
