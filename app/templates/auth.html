@@ -31,7 +31,7 @@
             {{ form.username(class_='field', placeholder_='Логин') }}
             {{ form.password(class_='field', placeholder_='Пароль') }}
             {{ form.submit(class_='field submit') }}
-            <input type="button" value="Зарегистрироваться" class='field submit button'>
+            <a href="{{ url_for('registration') }}" class = 'field submit button' >Зарегистрироваться</a>
         </form>
     </section>
 </main>

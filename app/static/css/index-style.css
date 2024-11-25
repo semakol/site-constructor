@@ -2,6 +2,10 @@ body{
     font-family: 'Manrope';
     color: black;
     margin: 0;
+    background-image: url('/img/Vmake-1731352358\ 1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  
 }
 
 .company-name {
@@ -121,4 +125,11 @@ input[type="radio"] {
     margin: 0 auto;
     font-size: 80px;
     margin-bottom: 25px;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
 }
