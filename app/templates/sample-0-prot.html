@@ -5,14 +5,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/sample-style-prot.css">
-    <link rel="stylesheet" href="../static/css/sample-style-prot.css">
+    <link rel="stylesheet" href="../static/css/sample-style.css">
+    <link rel="stylesheet" href="../static/css/sample-style.css">
     <title>Конструктор</title>
 </head>
 <body>
     <main>
         <section class="page"></section>
         <button class="new-block">Добавить блоки</button>
+        <div class="page-buttons">   
+            <button class="new-block save-page">Сохранить страницу</button>
+            <button class="new-block submit-page">Выгрузить страницу</button>
+        </div>  
         <section class="block-bar hidden">
             <div class="title-bar">
                 <h4>Библиотека шаблонов</h4>
@@ -59,7 +63,7 @@
                 <p>Фоновое изображение</p>
                 <input class="input-img" type="file" value="Загрузить файл">
                 <p>Только цвет</p>
-                <input type="color" class="head-color" name="head" value=""/>
+                <input type="color" class="head-color" name="head" value="#ffffff">
             </div>
         </section>
         <section class="info hidden">
@@ -111,27 +115,68 @@
         <section class="button hidden">
             <div class="buttons">
                 <button class="info-setting setting">Настройки</button>
-                <button class="info-content content">Контент</button>
+                <button class="info-content content" onclick="{document.querySelector('.button-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
             </div>
-            <button class="really-button">Кнопка</button>
+
+            <a href = '#' class="button-a"><button class="really-button">Кнопка</button></a>
+
+            <div class="content-bar button-bar hidden">
+                <button class="save" onclick="buttonClick()">Сохранить</button>
+                <p>Текст в кнопке</p>
+                <input type="text" value="Кнопка" class="input-button-0">
+                <p>Действие при нажатии(переход по ссылке)</p>
+                <input type="text" value='#' class="input-button-1">
+                <p>Фоновое изображение</p>
+                <input class="input-img-button" type="file" value="Загрузить файл">
+                <p>Только цвет</p>
+                <input type="color" class="button-color" name="button" value="#ffffff"/>
+            </div>
         </section>
         <section class="contact hidden">
             <div class="buttons">
                 <button class="info-setting setting">Настройки</button>
-                <button class="info-content content">Контент</button>
+                <button class="info-content content" onclick="{document.querySelector('.contact-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
             </div>
             <div class="contact-div">
                 <div class="contact-data">
                     <h2 class="info-h2">Контакты</h2>
-                    <!-- <ul class="contact-list">
-                        <li></li>
-                    </ul> -->
+                    <div class="container-list">
+                        <ul class="contact-list">
+                            <li><p class="on-info">Телефон:</p><p class = 'tel'>88005553535</p></li>
+                            <li><p class="on-info">Почта:</p><p class='email'>qazplm2125a@gmail.com</p></li>
+                            <li><p class="on-info">Адрес:</p><p class='addres'>ххххххххххххххххххххх</p></li>
+                        </ul>
+                        <ul class="contact-list contact-list-2">
+                            <li><p class="on-info">ВК:</p><a href="#" class="vk">Ссылка-1</a></li>
+                            <li><p class="on-info">Телеграм:</p><a href="#" class="telegram">Ссылка-2</a></li>
+                            <li><p class="on-info">Ватсап:</p><a href="#" class="whatsap">Ссылка-3</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="map"></div>
+                <!-- <div class="map"></div> -->
+            </div>
+            <div class="content-bar contact-bar hidden">
+                <button class="save" onclick="contactClick()">Сохранить</button>
+                <p>Телефон</p>
+                <input type="text" value="88005553535" class="input-contact-0">
+                <p>Почта</p>
+                <input type="text" value="12345678910@gmail.com" class="input-contact-1">
+                <p>Адрес</p>
+                <input type="text" value="ххххххххххххххххххххх" class="input-contact-2">
+                <p>ВК</p>
+                <input type="text" value="Ссылка-1" class="input-contact-3">
+                <p>Телеграм</p>
+                <input type="text" value="Ссылка-2" class="input-contact-4">
+                <p>Ватсап</p>
+                <input type="text" value="Ссылка-3" class="input-contact-5">
+                <p>Фоновое изображение</p>
+                <input class="input-img-contact" type="file" value="Загрузить файл">
+                <p>Только цвет</p>
+                <input type="color" class="contact-color" name="contact" value="#ffffff"/>
             </div>
         </section>
     </main>

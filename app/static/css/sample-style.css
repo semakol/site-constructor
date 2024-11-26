@@ -21,7 +21,7 @@ body{
     border-style: solid;
     font-size: 1.5rem;
     margin-top: 3.125em;
-    margin-bottom: 0.5em;
+    margin-bottom: 2em;
     margin-left: 50%;
     transform: translateX(-50%);
 }
@@ -322,7 +322,7 @@ p{
     font-size: 24px;
     padding-bottom: 15px;
 }
-.info-div, .prospects-div{
+.info-div, .prospects-div, .contact-data{
     padding: 20px 100px 13px 100px;
     border-radius: 20px; 
     border-color: #FF7700;
@@ -445,10 +445,11 @@ p{
     box-sizing: border-box;
     border-width: 0.1em;
 }
-.input-img{
+input[type = 'file']{
     border-style: solid;
     border-color: #FF7700;
     border-radius: 0 !important;
+    padding-left: 5px;
 }
 .content-bar p {
     color: rgba(99, 99, 99, 1);
@@ -476,7 +477,7 @@ p{
     }
 }
 
-.head-color,.info-color{
+input[type='color']{
     border-radius: 0 !important;
     padding: 0 !important;
     width: 45% !important;
@@ -487,4 +488,56 @@ textarea{
     color: black;
     font-size: 1.25em;
     padding-bottom: 3em;
+}
+
+.container-list{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.contact-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.contact-list p{
+    font-size: 20px;
+}
+.on-info{
+    padding: 0;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+.contact-list li a{
+    text-decoration: none;
+    color:black;
+    font-size: 20px;
+}
+
+.contact-list li{
+    margin-bottom: 15px;
+}
+
+.contact-list-2 li{
+    margin-bottom: 30px;
+}
+
+.contact-bar{
+    overflow: auto;
+}
+
+.page-buttons{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap:10em;    
+}
+.save-page, .submit-page{
+    margin: 0;
+    color: white;
+    background-color: black;
+}
+
+.save-page{
+    margin-left: 33%;
 }
