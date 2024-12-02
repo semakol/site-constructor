@@ -351,7 +351,7 @@ p{
     margin-bottom: 90px;
 }
 
-.content-bar {
+.content-bar, .setting-bar {
     position: fixed;
     top: 0;
     left: 0;
@@ -365,24 +365,24 @@ p{
 
 /* Адаптивная верстка для .content-bar */
 @media (max-width: 1024px) {
-    .content-bar {
+    .content-bar,.setting-bar {
         width: 40%;
     }
 }
 
 @media (max-width: 768px) {
-    .content-bar {
+    .content-bar,.setting-bar {
         width: 50%;
     }
 }
 
 @media (max-width: 480px) {
-    .content-bar {
+    .content-bar,.setting-bar {
         width: 70%;
     }
 }
 
-.content-bar {
+.content-bar,.setting-bar {
     position: fixed;
     top: 0;
     left: 0;
@@ -395,19 +395,19 @@ p{
 }
 
 @media (max-width: 1024px) {
-    .content-bar {
+    .content-bar,.setting-bar {
         width: 40%;
     }
 }
 
 @media (max-width: 768px) {
-    .content-bar {
+    .content-bar,.setting-bar {
         width: 50%;
     }
 }
 
 @media (max-width: 480px) {
-    .content-bar {
+    .content-bar,.setting-barsetting-bar {
         width: 70%;
     }
 }
@@ -427,11 +427,11 @@ p{
     padding-left: 0;
 }
 
-.content-bar input, .content-bar p {
+.content-bar input, .content-bar p, .setting-bar input, .setting-bar p{
     margin-left: 1em;
 }
 
-.content-bar input, textarea {
+.content-bar input, textarea,.setting-bar input,.setting-bar div button {
     margin-left: 1em;
     margin-bottom: 2em;
     font-size: 1.25rem;
@@ -451,7 +451,7 @@ input[type = 'file']{
     border-radius: 0 !important;
     padding-left: 5px;
 }
-.content-bar p {
+.content-bar p, .setting-bar p{
     color: rgba(99, 99, 99, 1);
     font-size: 1.5rem;
 }
@@ -477,10 +477,11 @@ input[type = 'file']{
     }
 }
 
-input[type='color']{
+input[type='color'], .color-none{
     border-radius: 0 !important;
     padding: 0 !important;
     width: 45% !important;
+    font-size: 16px;
 }
 
 textarea{
@@ -542,3 +543,42 @@ textarea{
 .save-page{
     margin-left: 33%;
 }
+
+.setting-bar{
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.setting-bar div{
+    display: flex;
+}
+
+.setting-bar div div{
+    display: block;
+}
+
+.setting-bar div div p{
+    font-size: 20px;
+    margin-right: 0.5em;
+}
+
+.setting-bar div button{
+    width: auto;
+    font-size: 16px;
+    padding-left: 0.5em;
+}
+
+.setting-bar input[type='number']{
+    width: 45%;
+    font-size: 16px;
+    padding-left: 0.5em;
+}
+
+.color-none:active{
+    border-style: solid;
+    border-color: #FF7700;
+}
+/* button:focus{
+    border-style: solid;
+    border-color: #FF7700;
+} */

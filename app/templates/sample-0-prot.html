@@ -40,18 +40,22 @@
                 </li>
             </ul>
         </section>
+
+
         <section class="header block hidden">
             <div class="buttons">
-                <button class="header-setting setting">Настройки</button>
+                <button class="header-setting setting" onclick="{document.querySelector('.setting-header-bar').classList.remove('hidden');}">Настройки</button>
                 <button class="header-content content" onclick="{document.querySelector('.header-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
             </div>
+
             <div class="titles">
                 <h2 class="title-0">Надзаголовок</h2>
                 <h1 class="title-1">Заголовок</h1>
                 <h2 class="tile-2">Описание</h2>
             </div>
+
             <div class="content-bar header-bar hidden">
                 <button class="save" onclick="headerClick()">Сохранить</button>
                 <p>Надзаголовок</p>
@@ -60,12 +64,64 @@
                 <input type="text" value="Заголовок" class="input-title-1">
                 <p>Описание</p>
                 <input type="text" value="Описание" class="input-title-2">
+            </div>
+
+            <div class="setting-bar setting-header-bar hidden">
+                <button class="save" onclick="headerSettingClick()">Сохранить</button>
+
+                <p>Горизонтальное выравнивание</p>
+                <div class="position-x-div">
+                    <button onclick="setHorizontalAlignment('left','titles')">по левой границе</button>
+                    <button onclick="setHorizontalAlignment('center','titles')">по центру</button>
+                    <button onclick="setHorizontalAlignment('right','titles')">по правой границе</button>
+                </div>
+                <p>Размер шрифта</p>
+                <div class="position-x-div">
+                    <div class="little-div">
+                        <p>Надзаголовок</p>
+                        <input type="number" value="40" class="input-setting-header-0">
+                    </div>
+                    <div class="little-div">
+                        <p>Заголовок</p>
+                        <input type="number" value="90" class="input-setting-header-1">
+                    </div>
+                    <div class="little-div">
+                        <p>Описание</p>
+                        <input type="number" value="40" class="input-setting-header-2">
+                    </div>
+                </div>
+
+                <p>Цвет шрифта</p>
+                <div class="position-x-div">
+                    <div class="little-div">
+                        <p>Надзаголовок</p>
+                        <input type="color" class="header-color-0" name="header" value="#ffffff"/>
+                    </div>
+                    <div class="little-div">
+                        <p>Заголовок</p>
+                        <input type="color" class="header-color-1" name="header" value="#ffffff"/>
+                    </div>
+                    <div class="little-div">
+                        <p>Описание</p>
+                        <input type="color" class="header-color-2" name="header" value="#ffffff"/>
+                    </div>
+                </div>
+                <p>Цвет декора</p>
+                <div>
+                    <input type="color" class="header-border-color" name="header-border"
+                     onclick="{document.querySelector('.title-1').classList.remove('none-color');}" value="#FF7700"/>
+                    <button class="header-color-none color-none" 
+                    onclick="{document.querySelector('.title-1').classList.add('none-color');}"></button> 
+                </div>
                 <p>Фоновое изображение</p>
                 <input class="input-img" type="file" value="Загрузить файл">
                 <p>Только цвет</p>
+
                 <input type="color" class="head-color" name="head" value="#ffffff">
             </div>
         </section>
+
+
         <section class="info block hidden">
             <div class="buttons">
                 <button class="info-setting setting">Настройки</button>
@@ -73,10 +129,12 @@
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
             </div>
+
             <div class="info-div">
                 <h2 class="info-h2">Информация о компании</h2>
                 <p class="info-p">Текст</p>
             </div>
+
             <div class="content-bar info-bar hidden">
                 <button class="save" onclick="infoClick()">Сохранить</button>
                 <p>Заголовок</p>
@@ -88,7 +146,47 @@
                 <p>Только цвет</p>
                 <input type="color" class="info-color" name="info" value="#ffffff"/>
             </div>
+            
+            <div class="setting-bar info-bar hidden">
+                <button class="save" onclick="infoSettingClick()">Сохранить</button>
+                <p>Горизонтальное вырвнивание</p>
+                <div class="position-x-div">
+                    <button class="leftBorder">по левой границе</button>
+                    <button class="centerBorderX">по центру</button>
+                    <button class="rightBorder">по правой границе</button>
+                </div>
+                <p>Вертикальное вырвнивание</p>
+                <div class="position-x-div">
+                    <button class="topBorder">снизу</button>
+                    <button class="centerBorderY">по центру</button>
+                    <button class="bottomBorder">сверху</button>
+                </div>
+                <p>Размер шрифта</p>
+                <div class="position-x-div">
+                    <div class="little-div">
+                        <p>Надзаголовок</p>
+                        <input type="number" value="40" class="input-setting-info-0">
+                    </div>
+                    <div class="little-div">
+                        <p>Заголовок</p>
+                        <input type="number" value="90" class="input-setting-info-1">
+                    </div>
+                    <div class="little-div">
+                        <p>Описание</p>
+                        <input type="number" value="40" class="input-setting-info-2">
+                    </div>
+                </div>
+
+
+                
+                <p>Фоновое изображение</p>
+                <input class="input-img-info" type="file" value="Загрузить файл">
+                <p>Только цвет</p>
+                <input type="color" class="info-color" name="info" value="#ffffff"/>
+            </div>
         </section>
+
+
         <section class="prospects block hidden">
             <div class="buttons">
                 <button class="info-setting setting">Настройки</button>
@@ -112,6 +210,8 @@
                 <input type="color" class="prospects-color" name="prospects" value="#ffffff"/>
             </div>
         </section>
+
+
         <section class="button block hidden">
             <div class="buttons">
                 <button class="info-setting setting">Настройки</button>
@@ -134,6 +234,8 @@
                 <input type="color" class="button-color" name="button" value="#ffffff"/>
             </div>
         </section>
+
+
         <section class="contact block hidden">
             <div class="buttons">
                 <button class="info-setting setting">Настройки</button>
@@ -184,4 +286,5 @@
 <script src="../static/js/new-block.js"></script>
 <script src="../static/js/content-bar.js"></script>
 <script src="../static/js/send-page.js"></script>
+<script src="../static/js/setting-bar.js"></script>
 </html>
