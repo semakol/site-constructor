@@ -1,3 +1,4 @@
+let valueToJson = {}
 function headerClick() {
     // Обновление текстовых блоков
     document.querySelector('.title-0').textContent = document.querySelector('.input-title-0').value;
