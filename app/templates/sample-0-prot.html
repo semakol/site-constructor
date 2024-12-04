@@ -318,7 +318,7 @@
 
         <section class="contact block hidden">
             <div class="buttons">
-                <button class="info-setting setting">Настройки</button>
+                <button class="info-setting setting" onclick="{document.querySelector('.setting-contact-bar').classList.remove('hidden');}">Настройки</button>
                 <button class="info-content content" onclick="{document.querySelector('.contact-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
@@ -329,7 +329,7 @@
                     <div class="container-list">
                         <ul class="contact-list">
                             <li><p class="on-info">Телефон:</p><p class = 'tel'>88005553535</p></li>
-                            <li><p class="on-info">Почта:</p><p class='email'>qazplm2125a@gmail.com</p></li>
+                            <li><p class="on-info">Почта:</p><p class='email'>хххххххххх@gmail.com</p></li>
                             <li><p class="on-info">Адрес:</p><p class='addres'>ххххххххххххххххххххх</p></li>
                         </ul>
                         <ul class="contact-list contact-list-2">
@@ -346,7 +346,7 @@
                 <p>Телефон</p>
                 <input type="text" value="88005553535" class="input-contact-0">
                 <p>Почта</p>
-                <input type="text" value="12345678910@gmail.com" class="input-contact-1">
+                <input type="text" value="хххххххххх@gmail.com" class="input-contact-1">
                 <p>Адрес</p>
                 <input type="text" value="ххххххххххххххххххххх" class="input-contact-2">
                 <p>ВК</p>
@@ -355,6 +355,68 @@
                 <input type="text" value="Ссылка-2" class="input-contact-4">
                 <p>Ватсап</p>
                 <input type="text" value="Ссылка-3" class="input-contact-5">
+            </div>
+
+
+            <div class="setting-bar setting-contact-bar hidden">
+                <button class="save" onclick="contactSettingClick()">Сохранить</button>
+
+                <p>Горизонтальное выравнивание</p>
+                <div class="position-x-div">
+                    <button onclick="setHorizontalAlignment('left','contact-div')">по левой границе</button>
+                    <button onclick="setHorizontalAlignment('center','contact-div')">по центру</button>
+                    <button onclick="setHorizontalAlignment('right','contact-div')">по правой границе</button>
+                </div>
+                <!-- <h2 class="info-h2">Контакты</h2>
+                <div class="container-list">
+                    <ul class="contact-list">
+                        <li><p class="on-info">Телефон:</p><p class = 'tel'>88005553535</p></li>
+                        <li><p class="on-info">Почта:</p><p class='email'>qazplm2125a@gmail.com</p></li>
+                        <li><p class="on-info">Адрес:</p><p class='addres'>ххххххххххххххххххххх</p></li>
+                    </ul>
+                    <ul class="contact-list contact-list-2">
+                        <li><p class="on-info">ВК:</p><a href="#" class="vk">Ссылка-1</a></li>
+                        <li><p class="on-info">Телеграм:</p><a href="#" class="telegram">Ссылка-2</a></li>
+                        <li><p class="on-info">Ватсап:</p><a href="#" class="whatsap">Ссылка-3</a></li>
+                    </ul> -->
+                <p>Размер шрифта</p>
+                <div class="position-x-div">
+                    <div class="little-div">
+                        <p>Заголовок</p>
+                        <input type="number" value="40" class="input-setting-contact-0">
+                    </div>
+                    <div class="little-div">
+                        <p>Подзаголовки</p>
+                        <input type="number" value="20" class="input-setting-contact-1">
+                    </div>
+                    <div class="little-div">
+                        <p>Контакты</p>
+                        <input type="number" value="20" class="input-setting-contact-1">
+                    </div>
+                </div>
+
+                <p>Цвет шрифта</p>
+                <div class="position-x-div">
+                    <div class="little-div">
+                        <p>Заголовок</p>
+                        <input type="color" class="contact-color-0" name="contact" value="#000000"/>
+                    </div>
+                    <div class="little-div">
+                        <p>Подзаголовки</p>
+                        <input type="color" class="contact-color-1" name="contact" value="#000000"/>
+                    </div>
+                    <div class="little-div">
+                        <p>Контакты</p>
+                        <input type="color" class="contact-color-2" name="contact" value="#000000"/>
+                    </div>
+                </div>
+
+                <p>Цвет декора</p>
+                <div>
+                    <input type="color" class="contact-border-color" name="contact-border" value="#FF7700"/>
+                     <input type="color" class="contact-h2-border-color" name="contact-h2-border" value="#FFF1E3"/>
+                </div>
+
                 <p>Фоновое изображение</p>
                 <input class="input-img-contact" type="file" value="Загрузить файл">
                 <p>Только цвет</p>

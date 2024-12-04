@@ -181,3 +181,46 @@ function buttonSettingClick() {
     }
     document.querySelector('.setting-button-bar').classList.add('hidden');
 }
+
+function contactSettingClick() {
+    // Получаем значения из полей ввода
+    const headingSize = document.querySelector('.input-setting-contact-0').value;
+    const titleSize = document.querySelector('.input-setting-contact-1').value;
+
+    const headingColor = document.querySelector('.contact-color-0').value;
+    const titleColor = document.querySelector('.contact-color-1').value;
+    const infoColor = document.querySelector('.contact-color-2').value;
+    const headerBorderColor = document.querySelector('.contact-border-color').value;
+    const headerBorderH2Color = document.querySelector('.contact-h2-border-color').value;
+    // Применяем настройки к заголовкам
+    const titlesSection = document.querySelector('.contact-div');
+    
+    // Устанавливаем размеры шрифтов
+    titlesSection.querySelector('.contact h2').style.fontSize = headingSize + 'px';
+    titlesSection.querySelector('.contact p').style.fontSize = titleSize + 'px';
+
+    // Устанавливаем цвета шрифтов
+    titlesSection.querySelector('.contact h2').style.color = headingColor;
+    titlesSection.querySelectorAll('.contact p').forEach((el)=>{el.style.color = infoColor;})
+    titlesSection.querySelectorAll('.contact p.on-info').forEach((el)=>{el.style.color = titleColor;})
+
+    titlesSection.style.borderColor = headerBorderColor;
+    document.querySelector('.contact h2').style.setProperty('--c', headerBorderH2Color);
+
+    
+    var fileInput = document.querySelector('.input-img-contact');
+    var colorInput = document.querySelector('.contact-color');
+    var reader = new FileReader();
+    if (colorInput.value && !fileInput.files[0]) 
+        { // Если выбран цвет, удаляем фоновое изображение и устанавливаем цвет 
+            document.querySelector('.contact').style.backgroundColor = colorInput.value; 
+            document.querySelector('.contact').style.backgroundImage = 'none'; 
+    }else{
+    reader.onload = function(e) {
+        document.querySelector('.contact').style.backgroundColor = 'transparent';
+        document.querySelector('.contact').style.backgroundImage = `url(${e.target.result})`;
+    }
+    reader.readAsDataURL(fileInput.files[0]);
+    }
+    document.querySelector('.setting-contact-bar').classList.add('hidden');
+}
