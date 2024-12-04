@@ -124,7 +124,7 @@
 
         <section class="info block hidden">
             <div class="buttons">
-                <button class="info-setting setting">Настройки</button>
+                <button class="info-setting setting" onclick="{document.querySelector('.setting-info-bar').classList.remove('hidden');}">Настройки</button>
                 <button class="info-content content" onclick="{document.querySelector('.info-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
@@ -141,46 +141,53 @@
                 <input type="text" value="Информация о компании" class="input-info-0">
                 <p>Текст</p>
                 <textarea class="input-info-1">Текст</textarea>
-                <p>Фоновое изображение</p>
-                <input class="input-img-info" type="file" value="Загрузить файл">
-                <p>Только цвет</p>
-                <input type="color" class="info-color" name="info" value="#ffffff"/>
             </div>
             
-            <div class="setting-bar info-bar hidden">
+            <div class="setting-bar setting-info-bar hidden">
                 <button class="save" onclick="infoSettingClick()">Сохранить</button>
-                <p>Горизонтальное вырвнивание</p>
+
+                <p>Горизонтальное выравнивание</p>
                 <div class="position-x-div">
-                    <button class="leftBorder">по левой границе</button>
-                    <button class="centerBorderX">по центру</button>
-                    <button class="rightBorder">по правой границе</button>
+                    <button onclick="setHorizontalAlignment('left','info-div')">по левой границе</button>
+                    <button onclick="setHorizontalAlignment('center','info-div')">по центру</button>
+                    <button onclick="setHorizontalAlignment('right','info-div')">по правой границе</button>
                 </div>
-                <p>Вертикальное вырвнивание</p>
-                <div class="position-x-div">
-                    <button class="topBorder">снизу</button>
-                    <button class="centerBorderY">по центру</button>
-                    <button class="bottomBorder">сверху</button>
-                </div>
+
                 <p>Размер шрифта</p>
                 <div class="position-x-div">
                     <div class="little-div">
-                        <p>Надзаголовок</p>
+                        <p>Заголовок</p>
                         <input type="number" value="40" class="input-setting-info-0">
                     </div>
                     <div class="little-div">
-                        <p>Заголовок</p>
-                        <input type="number" value="90" class="input-setting-info-1">
-                    </div>
-                    <div class="little-div">
                         <p>Описание</p>
-                        <input type="number" value="40" class="input-setting-info-2">
+                        <input type="number" value="24" class="input-setting-info-1">
                     </div>
                 </div>
 
+                <p>Цвет шрифта</p>
+                <div class="position-x-div">
+                    <div class="little-div">
+                        <p>Заголовок</p>
+                        <input type="color" class="info-color-0" name="info" value="#000000"/>
+                    </div>
+                    <div class="little-div">
+                        <p>Описание</p>
+                        <input type="color" class="info-color-1" name="info" value="#000000"/>
+                    </div>
+                </div>
 
-                
+                <p>Цвет декора</p>
+                <div>
+                    <input type="color" class="info-border-color" name="info-border"
+                     onclick="{document.querySelector('.info-div').classList.remove('none-color');}" value="#FF7700"/>
+                     <input type="color" class="info-h2-border-color" name="info-h2-border"
+                     onclick="{document.querySelector('.info-div').classList.remove('none-color');}" value="#FFF1E3"/>
+                </div>
+
                 <p>Фоновое изображение</p>
                 <input class="input-img-info" type="file" value="Загрузить файл">
+
                 <p>Только цвет</p>
                 <input type="color" class="info-color" name="info" value="#ffffff"/>
             </div>
@@ -188,22 +195,67 @@
 
 
         <section class="prospects block hidden">
+
             <div class="buttons">
-                <button class="info-setting setting">Настройки</button>
+                <button class="prospects-setting setting" onclick="{document.querySelector('.setting-prospects-bar').classList.remove('hidden');}">Настройки</button>
                 <button class="info-content content" onclick="{document.querySelector('.prospects-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
             </div>
+
             <div class="prospects-div">
                 <h2 class="prospects-h2">Перспективы</h2>
                 <p class="prospects-p">Текст</p>
             </div>
+
             <div class="content-bar prospects-bar hidden">
                 <button class="save" onclick="prospectsClick()">Сохранить</button>
                 <p>Заголовок</p>
                 <input type="text" value="Перспективы" class="input-prospects-0">
                 <p>Текст</p>
                 <textarea class="input-prospects-1">Текст</textarea>
+            </div>
+
+            <div class="setting-bar setting-prospects-bar hidden">
+                <button class="save" onclick="prospectsSettingClick()">Сохранить</button>
+
+                <p>Горизонтальное выравнивание</p>
+                <div class="position-x-div">
+                    <button onclick="setHorizontalAlignment('left','prospects-div')">по левой границе</button>
+                    <button onclick="setHorizontalAlignment('center','prospects-div')">по центру</button>
+                    <button onclick="setHorizontalAlignment('right','prospects-div')">по правой границе</button>
+                </div>
+
+                <p>Размер шрифта</p>
+                <div class="position-x-div">
+                    <div class="little-div">
+                        <p>Заголовок</p>
+                        <input type="number" value="40" class="input-setting-prospects-0">
+                    </div>
+                    <div class="little-div">
+                        <p>Описание</p>
+                        <input type="number" value="24" class="input-setting-prospects-1">
+                    </div>
+                </div>
+
+                <p>Цвет шрифта</p>
+                <div class="position-x-div">
+                    <div class="little-div">
+                        <p>Заголовок</p>
+                        <input type="color" class="prospects-color-0" name="prospects" value="#000000"/>
+                    </div>
+                    <div class="little-div">
+                        <p>Описание</p>
+                        <input type="color" class="prospects-color-1" name="prospects" value="#000000"/>
+                    </div>
+                </div>
+
+                <p>Цвет декора</p>
+                <div>
+                    <input type="color" class="prospects-border-color" name="prospects-border" value="#FF7700"/>
+                     <input type="color" class="prospects-h2-border-color" name="prospects-h2-border" value="#FFF1E3"/>
+                </div>
+
                 <p>Фоновое изображение</p>
                 <input class="input-img-prospects" type="file" value="Загрузить файл">
                 <p>Только цвет</p>
@@ -214,7 +266,7 @@
 
         <section class="button block hidden">
             <div class="buttons">
-                <button class="info-setting setting">Настройки</button>
+                <button class="info-setting setting" onclick="{document.querySelector('.setting-button-bar').classList.remove('hidden');}">Настройки</button>
                 <button class="info-content content" onclick="{document.querySelector('.button-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
                 <button class="on-off"><img src = '../static/img/on-off.svg' height="26px" width="23px"></button>
@@ -228,6 +280,34 @@
                 <input type="text" value="Кнопка" class="input-button-0">
                 <p>Действие при нажатии(переход по ссылке)</p>
                 <input type="text" value='#' class="input-button-1">
+            </div>
+
+            <div class="setting-bar setting-button-bar hidden">
+                <button class="save" onclick="buttonSettingClick()">Сохранить</button>
+
+                <p>Горизонтальное выравнивание</p>
+                <div class="position-x-div">
+                    <button onclick="setHorizontalAlignment('left','button-a')">по левой границе</button>
+                    <button onclick="setHorizontalAlignment('center','button-a')">по центру</button>
+                    <button onclick="setHorizontalAlignment('right','button-a')">по правой границе</button>
+                </div>
+
+                <p>Размер шрифта</p>
+                <div class="position-x-div">
+                    <input type="number" value="32" class="input-setting-button-0">
+                </div>
+
+                <p>Цвет шрифта</p>
+                <div class="position-x-div">
+                    <input type="color" class="button-color-0" name="prospects" value="#000000"/>
+                </div>
+
+                <p>Цвет декора</p>
+                <div>
+                    <input type="color" class="button-background-color" name="button-border" value="#FF7700"/>
+                     <input type="color" class="button-border-color" name="button-border" value="#000000"/>
+                </div>
+
                 <p>Фоновое изображение</p>
                 <input class="input-img-button" type="file" value="Загрузить файл">
                 <p>Только цвет</p>
