@@ -56,10 +56,15 @@ def registration():
             return redirect(url_for('index'))
     return render_template('registration.html', form=form)
 
-@app.route('/intership')
-def intership():
-    return render_template('intership.html')
+@app.route('/internship')
+def internship():
+    return render_template('internship.html')
 
 @app.route('/sample')
 def sample():
     return render_template('sample-0.html')
+
+@app.route('/api/v1/sample')
+def sample_api():
+    if request.method == 'POST':
+        return 'привет, Евгений'
