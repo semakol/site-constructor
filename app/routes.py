@@ -64,7 +64,7 @@ def internship():
 def sample():
     return render_template('sample-0.html')
 
-@app.route('/api/v1/sample')
+@app.route('/api/v1/sample',methods=['POST'])
 def sample_api():
     if request.method == 'POST':
         return 'привет, Евгений'

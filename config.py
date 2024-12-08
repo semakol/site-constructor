@@ -1,8 +1,8 @@
 import os
 
 class Settings:
-    DB_PASSWORD = 'postgres'
-    DB_NAME = 'site-constructor'
+    DB_PASSWORD = '12345'
+    DB_NAME = 'postgres'
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
