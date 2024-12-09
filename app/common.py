@@ -1,5 +1,5 @@
 import bcrypt
-
+from app.models import *
 
 def hash_password(password: str) -> str:
     salt = bcrypt.gensalt()
@@ -9,5 +9,11 @@ def hash_password(password: str) -> str:
 
 def check_password(password: str, hashed_password: str) -> bool:
     return bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8'))
+
+def check_auth(session):
+    user = session.get('user_id')
+    if not user:
+        return 'None'
+    return User.query.get(user).role
 
 
