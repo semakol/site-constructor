@@ -22,6 +22,9 @@ class Sample(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.LargeBinary, nullable=False)
     name = db.Column(db.String(128), nullable=False)
+    state = db.Column(db.String(16), nullable=True)
+    date_create = db.Column(db.DateTime, nullable=True)
+    date_update = db.Column(db.DateTime, nullable=True)
 
     rel = db.relationship('SampleUser', backref='sample', lazy=True)
 
@@ -33,6 +36,7 @@ class SampleUser(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     relationship = db.Column(db.String(128), nullable=False)
+
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     sampleId = db.Column(db.Integer, db.ForeignKey('samples.id'), nullable=False)
 

@@ -1,6 +1,5 @@
-from http.client import responses
-
-from sqlalchemy.testing.suite.test_reflection import users
+from crypt import methods
+from datetime import datetime
 from werkzeug.utils import redirect
 
 from app import app
@@ -72,6 +71,51 @@ def registration():
 def internship():
     return render_template('internship.html')
 
+@app.route('/PA-record-student')
+def PA_record_student():
+    role = check_auth(session)
+    if role == 'None':
+        return redirect(url_for('auth'))
+    results = (db.session.query(Sample, SampleUser).join(SampleUser)
+               .filter(SampleUser.userId == session['user_id'], SampleUser.relationship == 'subscriber')
+               .limit(4).all())
+    data = [
+        {'id': item[0].id,
+         'name': item[0].name}
+        for item in results
+    ]
+    return render_template('PA-record-student.html', data=data)
+
+@app.route('/PA-redactor')
+def PA_redactor():
+    role = check_auth(session)
+    if role == 'None':
+        return redirect(url_for('auth'))
+    results = (db.session.query(Sample, SampleUser).join(SampleUser)
+               .filter(SampleUser.userId == session['user_id'], SampleUser.relationship=='creator')
+               .limit(4).all())
+    data = [
+        {'id': item[0].id,
+         'name': item[0].name}
+        for item in results
+    ]
+    return render_template('PA-redactor.html', data=data)
+
+@app.route('/PA-student')
+def PA_student():
+    role = check_auth(session)
+    if role == 'None':
+        return redirect(url_for('auth'))
+    results = (db.session.query(Sample, SampleUser).join(SampleUser)
+               .filter(Sample.state == 'open')
+               .limit(4).all())
+    data = [
+        {'id': item[0].id,
+         'name': item[0].name}
+        for item in results
+    ]
+    return render_template('PA-student.html', data=data)
+
 @app.route('/sample')
 def sample():
     role = check_auth(session)
@@ -84,8 +128,16 @@ def sample_check(sample_id):
     role = check_auth(session)
     if role == 'None':
         return redirect(url_for('auth'))
-    data = Sample.query.get(sample_id).data
-    return data.decode('utf-8')
+    query = Sample.query.get(sample_id)
+    if query.state == 'close':
+        rel = SampleUser.query.filter(SampleUser.userId == session['user_id'],
+                                      SampleUser.relationship == 'creator',
+                                      SampleUser.sampleId == query.id)
+        if rel is None:
+            return redirect(url_for('auth'))
+    data = query.data.decode('utf-8')
+    name = query.name
+    return render_template('style-temp.html', body=data, name=name)
 
 
 @app.route('/api/v1/sample', methods=['POST'])
@@ -95,10 +147,17 @@ def sample_api():
         return
     user_id = session.get('user_id')
     if request.method == 'POST':
-        new_sample = Sample(data=request.data, name='test')
+        new_sample = Sample(data=request.data, name='test',
+                            date_create=datetime.utcnow(), date_update=datetime.utcnow(),
+                            state='close')
         db.session.add(new_sample)
         db.session.commit()
         new_realt = SampleUser(relationship='creator' ,userId=user_id, sampleId=new_sample.id)
         db.session.add(new_realt)
         db.session.commit()
         return 'привет, Евгений'
+
+@app.route('/api/v1/exit', methods=['POST'])
+def exit_user():
+    session['user_id'] = None
+    return redirect('auth')
