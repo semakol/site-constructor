@@ -2,7 +2,7 @@ function sendHTML(){
     const page = document.querySelector('.page'); 
     const clonedPage = page.cloneNode(true); 
 
-    const elementsToRemove = clonedPage.querySelectorAll('.hidden, .buttons');
+    const elementsToRemove = clonedPage.querySelectorAll('.hidden, .setting, .content, .trash, .on-off');
     elementsToRemove.forEach(element => element.remove()); 
 
     const filteredHtml = clonedPage.innerHTML;

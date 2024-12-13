@@ -1,7 +1,7 @@
 import os
 
 class Settings:
-    DB_PASSWORD = 'postgres'
+    DB_PASSWORD = '12345'
     DB_NAME = 'site-constructor'
 
 class Config:
