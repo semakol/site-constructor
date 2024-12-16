@@ -115,7 +115,7 @@ h4{
     font-size: 15px;
 }
 
-.exit,.create-internship{
+.exit,.create-internship,.open-internship{
     padding: 0.2em 2em;
     border: none;
     font: inherit;
@@ -134,10 +134,13 @@ h4{
     margin-bottom: 0.2em;
     margin-left: 0.5em;
 }
-.create-internship{
+.create-internship,.open-internship{
     color: black;
     background-color:#E9E9E9;
     border-color:#FF7700;
     margin-left: 37%;
     margin-bottom: 1em
+}
+.open-internship{
+    margin-left: auto;
 }

@@ -14,6 +14,9 @@ def check_auth(session):
     user = session.get('user_id')
     if not user:
         return 'None'
-    return User.query.get(user).role
+    q_user = User.query.get(user)
+    if not q_user:
+        return 'None'
+    return q_user.role
 
 
