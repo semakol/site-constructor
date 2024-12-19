@@ -181,7 +181,7 @@ def sample_api():
 @app.route('/api/v1/exit', methods=['POST'])
 def exit_user():
     session['user_id'] = None
-    return redirect('auth')
+    return ''
 
 @app.route('/api/v1/open-sample/<id>', methods=['POST'])
 def open_sample(id):
