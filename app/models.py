@@ -22,6 +22,7 @@ class Sample(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.LargeBinary, nullable=False)
     name = db.Column(db.String(128), nullable=False)
+    image = db.Column(db.LargeBinary, nullable=True)
     state = db.Column(db.String(16), nullable=True)
     date_create = db.Column(db.DateTime, nullable=True)
     date_update = db.Column(db.DateTime, nullable=True)
