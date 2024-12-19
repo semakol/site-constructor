@@ -11,7 +11,7 @@
 </head>
 <body>
   <header>
-    <button class="exit">Выход</button>
+    <button class="exit" onclick="exit()">Выход</button>
     <p class="lk">Личный кабинет</p>
     <button class="internship">Записи на стажировки</button>
   </header>
@@ -43,4 +43,5 @@
         </section>
     </main>
 </body>
+<script src="{{ url_for('static', filename='js/exit.js') }}"></script>
 </html>
