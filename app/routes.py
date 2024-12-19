@@ -1,6 +1,6 @@
-
 from datetime import datetime
 from werkzeug.utils import redirect
+from bs4 import BeautifulSoup as bs
 
 from app import app
 from flask import render_template, flash, make_response, session, url_for, request
@@ -22,9 +22,9 @@ def index():
 def auth():
     role = check_auth(session)
     if role == 'editor':
-        return redirect(url_for('internship'))
+        return redirect(url_for('PA_redactor'))
     elif role == 'intern':
-        return redirect(url_for('internship'))
+        return redirect(url_for('PA_student'))
     form = AuthForm()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -39,7 +39,10 @@ def auth():
                 flash('Неверный логин или пароль')
                 return redirect(url_for('auth'))
             session['user_id'] = user.id
-            return redirect(url_for('index'))
+            if role == 'editor':
+                return redirect(url_for('PA_redactor'))
+            elif role == 'intern':
+                return redirect(url_for('PA_student'))
     return render_template('auth.html', form=form)
 
 
@@ -58,12 +61,19 @@ def registration():
                 flash('Несовпадает пароль')
                 return redirect(url_for('registration'))
             print(f"Пользователь: {username}, Пароль: {password}")
+            query_user = User.query.filter(User.username == username).all()
+            if len(query_user) != 0:
+                flash('Пользователь уже существует')
+                return redirect(url_for('registration'))
             new_user = User(username=username, password_hash=hash_password(password),
                             role=role, first_name=first_name, second_name=second_name)
             db.session.add(new_user)
             db.session.commit()
             session['user_id'] = new_user.id
-            return redirect(url_for('internship'))
+            if role == 'editor':
+                return redirect(url_for('PA_redactor'))
+            elif role == 'intern':
+                return redirect(url_for('PA_student'))
     return render_template('registration.html', form=form)
 
 
@@ -119,7 +129,7 @@ def PA_student():
 @app.route('/sample')
 def sample():
     role = check_auth(session)
-    if role == 'None':
+    if role != 'editor':
         return redirect(url_for('auth'))
     return render_template('sample-0.html')
 
@@ -137,7 +147,15 @@ def sample_check(sample_id):
             return redirect(url_for('auth'))
     data = query.data.decode('utf-8')
     name = query.name
-    return render_template('style-temp.html', body=data, name=name)
+    if role == 'intern':
+        soup = bs(data, "html.parser")
+        hidden = soup.find_all(class_ =['hidden'])
+        for i in hidden:
+            i.decompose()
+        data = soup.prettify()
+        return render_template('style-temp-2.html', body=data, name=name)
+    else:
+        return render_template('style-temp.html', body=data, name=name)
 
 
 @app.route('/api/v1/sample', methods=['POST'])
@@ -147,17 +165,32 @@ def sample_api():
         return
     user_id = session.get('user_id')
     if request.method == 'POST':
-        new_sample = Sample(data=request.data, name='test',
+        data = request.data
+        soap = bs(data, "html.parser")
+        title = soap.find('section', class_='header').find('div', class_='titles').find('h1', class_='title-1')
+        new_sample = Sample(data=request.data,
                             date_create=datetime.utcnow(), date_update=datetime.utcnow(),
-                            state='close')
+                            state='close', name=title.text if title else 'test')
         db.session.add(new_sample)
         db.session.commit()
         new_realt = SampleUser(relationship='creator' ,userId=user_id, sampleId=new_sample.id)
         db.session.add(new_realt)
         db.session.commit()
-        return 'привет, Евгений'
+        return url_for('sample') + '/' + str(new_sample.id)
 
 @app.route('/api/v1/exit', methods=['POST'])
 def exit_user():
     session['user_id'] = None
     return redirect('auth')
+
+@app.route('/api/v1/open-sample/<id>', methods=['POST'])
+def open_sample(id):
+    role = check_auth(session)
+    if role != 'editor':
+        return
+    sample_query = Sample.query.get(id)
+    if not sample_query:
+        return
+    sample_query.state = 'open'
+    db.session.commit()
+    return 'true'

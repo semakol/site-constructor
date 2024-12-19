@@ -1,19 +1,19 @@
 const newBlock = document.querySelector('.new-block');
 const blockBar = document.querySelector('.block-bar');
 const saveBar = document.querySelector('.save-page');
-const submitBar = document.querySelector('.submit-page');
+//const submitBar = document.querySelector('.submit-page');
 newBlock.addEventListener('click',()=>{
   blockBar.classList.remove('hidden');
   newBlock.classList.add('hidden');
   saveBar.classList.add('hidden');
-  submitBar.classList.add('hidden');
+//  submitBar.classList.add('hidden');
 });
 
 const exit = document.querySelector('.exit');
 exit.addEventListener('click',()=>{
   newBlock.classList.remove('hidden');
   saveBar.classList.remove('hidden');
-  submitBar.classList.remove('hidden');
+//  submitBar.classList.remove('hidden');
   blockBar.classList.add('hidden');
 });
 

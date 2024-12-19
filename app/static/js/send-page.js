@@ -22,6 +22,7 @@ function sendHTML(){
     })
     .then(data => {
         console.log('Success:', data);
+        alert('Страница отправлена')
     })
     .catch(error => {
         console.error('Error:', error);
