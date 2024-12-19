@@ -530,9 +530,7 @@ textarea{
 
 .page-buttons{
     display: flex;
-    margin: 0;
-    padding: 0;
-    gap:10em;    
+    padding: 0;   
 }
 .save-page, .submit-page{
     margin: 0;
@@ -542,7 +540,7 @@ textarea{
 }
 
 .save-page{
-    margin-left: 33%;
+    margin-left: 50%;
 }
 
 .setting-bar{
