@@ -54,7 +54,6 @@ function prospectsClick() {
 function buttonClick() {
     // Обновление текстовых блоков
     document.querySelector('.really-button').textContent = document.querySelector('.input-button-0').value;
-    document.querySelector('.button-a').href = document.querySelector('.input-button-1').value;
 
     var fileInput = document.querySelector('.input-img-button');
     var colorInput = document.querySelector('.button-color');
