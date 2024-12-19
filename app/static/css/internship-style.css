@@ -138,9 +138,12 @@ h4{
     color: black;
     background-color:#E9E9E9;
     border-color:#FF7700;
-    margin-left: 37%;
     margin-bottom: 1em
 }
 .open-internship{
     margin-left: auto;
+}
+.container {
+    display: flex;
+    justify-content: center;
 }
