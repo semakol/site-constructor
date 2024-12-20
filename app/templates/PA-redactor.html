@@ -25,10 +25,11 @@
             {% for item in data %}
             <li class="internship-el">
                 <a href="{{ url_for('sample') }}/{{ item.id }}" class='white'>
-                    <img src="#">
+                    <img src="../static/img/sample-1.jpg" height="249px" width="296px" class='white'>
                     <h3>{{ item.name }}</h3>
                 </a>
-                <button class="create-internship open-internship" onclick="sendOPEN({{ item.id }})">Открыть для всех</button>
+                <button class="create-internship open-internship" onclick="sendOPEN({{ item.id }})">Открыть для всех
+                </button>
             </li>
             {% endfor %}
             <!--                <li class="internship-el">-->
@@ -42,9 +43,11 @@
             <!--                <li class="internship-el"></li>-->
         </ul>
     </section>
-    <a href="{{ url_for('sample') }}">
-        <button class="create-internship">Создать стажировку</button>
-    </a>
+    <div class="container">
+        <a href="{{ url_for('sample') }}">
+            <button class="create-internship">Создать стажировку</button>
+        </a>
+    </div>
 </main>
 </body>
 <script src="{{ url_for('static', filename='js/exit.js') }}"></script>

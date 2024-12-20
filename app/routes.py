@@ -11,11 +11,7 @@ from app.common import *
 
 @app.route('/')
 def index():
-    user_id = session.get('user_id')
-    user = None
-    if user_id:
-        user = User.query.get(user_id).username
-    return render_template('index.html', session=user)
+    return redirect(url_for('auth'))
 
 
 @app.route('/auth', methods=['POST', 'GET'])
@@ -39,6 +35,7 @@ def auth():
                 flash('Неверный логин или пароль')
                 return redirect(url_for('auth'))
             session['user_id'] = user.id
+            role = check_auth(session)
             if role == 'editor':
                 return redirect(url_for('PA_redactor'))
             elif role == 'intern':
@@ -87,7 +84,7 @@ def PA_record_student():
     if role == 'None':
         return redirect(url_for('auth'))
     results = (db.session.query(Sample, SampleUser).join(SampleUser)
-               .filter(SampleUser.userId == session['user_id'], SampleUser.relationship == 'subscriber')
+               .filter(SampleUser.userId == session['user_id'], SampleUser.relationship == 'record')
                .limit(4).all())
     data = [
         {'id': item[0].id,
@@ -149,7 +146,10 @@ def sample_check(sample_id):
     name = query.name
     if role == 'intern':
         soup = bs(data, "html.parser")
-        hidden = soup.find_all(class_ =['hidden'])
+        hidden = soup.find_all(class_=['hidden', 'setting', 'content', 'trash', 'on-off'])
+        # record = soup.find('button', class_='button-a')
+        # if record:
+        #     record['onclick'] = f'Record({sample_id})'
         for i in hidden:
             i.decompose()
         data = soup.prettify()
@@ -194,3 +194,31 @@ def open_sample(id):
     sample_query.state = 'open'
     db.session.commit()
     return 'true'
+
+@app.route('/api/v1/image-save', methods=['POST'])
+def image_save():
+    # role = check_auth(session)
+    # if role != 'editor':
+    #     return
+    data = request.data
+    new_image = Images(image=data)
+    db.session.add(new_image)
+    db.session.commit()
+    return f'/api/v1/image/{new_image.id}'
+
+@app.route('/api/v1/image/id')
+def image_get(id):
+    image = Images.query.get(id)
+    if not image:
+        return None
+    return f'data:image/png;base64,{image.image}'
+
+@app.route('/api/v1/record/<id>', methods=['POST'])
+def record_sample(id):
+    role = check_auth(session)
+    if role == 'None':
+        return
+    new_rel = SampleUser(relationship='record', userId=session['user_id'], sampleId=id)
+    db.session.add(new_rel)
+    db.session.commit()
+    return ''

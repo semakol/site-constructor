@@ -22,7 +22,8 @@ function sendHTML(){
     })
     .then(data => {
         console.log('Success:', data);
-        alert('Страница отправлена')
+        alert('Страница отправлена');
+        window.location.href = "/PA-redactor";
     })
     .catch(error => {
         console.error('Error:', error);

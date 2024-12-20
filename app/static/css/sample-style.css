@@ -577,6 +577,11 @@ textarea{
     border-style: solid;
     border-color: #FF7700;
 }
+
+.block {
+    width: 100%;
+}
+
 /* button:focus{
     border-style: solid;
     border-color: #FF7700;

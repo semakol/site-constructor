@@ -1,5 +1,15 @@
 from app import db
 
+class Images(db.Model):
+    __tablename__ = 'images'
+
+    id = db.Column(db.Integer, primary_key=True)
+    image = db.Column(db.LargeBinary, nullable=False)
+
+    rel = db.relationship('Sample', backref='image', lazy=True)
+
+    def __repr__(self):
+        return f'<Image {self.id}>'
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -22,11 +32,11 @@ class Sample(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.LargeBinary, nullable=False)
     name = db.Column(db.String(128), nullable=False)
-    image = db.Column(db.LargeBinary, nullable=True)
     state = db.Column(db.String(16), nullable=True)
     date_create = db.Column(db.DateTime, nullable=True)
     date_update = db.Column(db.DateTime, nullable=True)
 
+    imageId = db.Column(db.Integer, db.ForeignKey('images.id'), nullable=True)
     rel = db.relationship('SampleUser', backref='sample', lazy=True)
 
     def __repr__(self):
