@@ -26,6 +26,14 @@ body{
     transform: translateX(-50%);
 }
 
+.new-block:hover {
+    background-color: #FFB74D; 
+}
+
+.new-block:active {
+    background-color: #CC6600;
+}
+
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
     .new-block {
@@ -135,16 +143,29 @@ body{
     border-bottom: 2px solid #DBDBDB; 
     padding-bottom: 2px;
 }
-.block-item button{
+
+.block-item button {
     padding: 0;
     border: none;
     font: inherit; 
     color: inherit;
     background-color: inherit;
     font-size: 20px;
-    cursor:pointer;
-    text-align:left;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
+
+.block-item button:hover {
+    background-color: #FFE4B5; /* Light background color on hover */
+    color: #000; /* Change text color on hover */
+}
+
+.block-item button:active {
+    background-color: #FFD700; /* Darker background color when clicked */
+    color: #FFF; /* Change text color when active */
+}
+
 
 .hidden{
     display: none !important;
@@ -208,6 +229,15 @@ h2{
 .buttons{
     color: black;
 }
+
+.buttons button:hover {
+    background-color: #FFB74D;
+}
+
+.buttons button:active {
+    background-color: #CC6600;
+}
+
 .header::after{
     content: '';
     position: absolute;
@@ -446,6 +476,21 @@ p{
     box-sizing: border-box;
     border-width: 0.1em;
 }
+
+.content-bar input:hover,
+.content-bar textarea:hover,
+.setting-bar input:hover,
+.setting-bar div button:hover {
+    background-color: #FFB74D;
+}
+
+.content-bar input:active,
+.content-bar textarea:active,
+.setting-bar input:active,
+.setting-bar div button:active {
+    background-color: #FF8C00;
+}
+
 input[type = 'file']{
     border-style: solid;
     border-color: #FF7700;
