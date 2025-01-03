@@ -28,7 +28,11 @@
                       <h3>Универсальный шаблон</h3>
                       <h4>Для любой стажировки</h4>
                     </a> 
-                    <button class="create-internship open-internship">Открыть для всех</button>
+                    <div class="button-div">
+                      <button class="create-internship open-internship" onclick="rechangeButton()">Открыть для всех</button>
+                      <button class="create-internship open-internship hidden" onclick="">Закрыть публикацию</button>
+                      <button class="create-internship open-internship" onclick="">Удалить</button>
+                    </div>
                 </li>
                 <li class="internship-el"></li>
                 <li class="internship-el"></li>
@@ -40,4 +44,5 @@
         </div>
     </main>
 </body>
+<script src="../static/js/rechange-button.js"></script>
 </html>

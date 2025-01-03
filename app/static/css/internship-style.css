@@ -147,3 +147,17 @@ h4{
     display: flex;
     justify-content: center;
 }
+
+.hidden{
+    display: none;
+}
+
+.button-div{
+    display: flex;
+    gap: 0.5em;
+    margin-top: 1.5em;
+}
+
+.button-div button{
+    font-size: 0.9em !important;
+}

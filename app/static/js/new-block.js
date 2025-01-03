@@ -26,11 +26,6 @@ function crerateElement(template){
   trash.addEventListener('click',()=>{
     block.remove();
   });
-
-  const onOff = block.querySelector('.on-off');
-  onOff.addEventListener('click', () => {
-    block.classList.toggle('off');
-  });
   block.classList.remove('hidden');
   page.appendChild(block);
   }

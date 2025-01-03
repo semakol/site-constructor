@@ -283,10 +283,6 @@ h2{
 }
 
 
-.content {
-    margin-right: 60vw;
-}
-
 /* Адаптивная верстка для .content */
 @media (max-width: 1024px) {
     .content {
