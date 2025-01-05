@@ -99,11 +99,12 @@ def PA_redactor():
     if role == 'None':
         return redirect(url_for('auth'))
     results = (db.session.query(Sample, SampleUser).join(SampleUser)
-               .filter(SampleUser.userId == session['user_id'], SampleUser.relationship=='creator')
+               .filter(SampleUser.userId == session['user_id'], SampleUser.relationship=='creator', Sample.state!='delete')
                .limit(4).all())
     data = [
         {'id': item[0].id,
-         'name': item[0].name}
+         'name': item[0].name,
+         'state': item[0].state}
         for item in results
     ]
     return render_template('PA-redactor.html', data=data)
@@ -144,6 +145,7 @@ def sample_check(sample_id):
             return redirect(url_for('auth'))
     data = query.data.decode('utf-8')
     name = query.name
+    id = query.id
     if role == 'intern':
         soup = bs(data, "html.parser")
         hidden = soup.find_all(class_=['hidden', 'setting', 'content', 'trash', 'on-off'])
@@ -155,7 +157,13 @@ def sample_check(sample_id):
         data = soup.prettify()
         return render_template('style-temp-2.html', body=data, name=name)
     else:
-        return render_template('style-temp.html', body=data, name=name)
+        soup = bs(data, "html.parser")
+        sections = soup.find_all('section')
+        for section in sections:
+            button = section.find_next('button', class_='trash')
+            button['onclick'] = "{document.querySelector("+ '\'.' +section.attrs['class'][0] + "'" +").remove();}"
+            data = soup.prettify()
+        return render_template('style-temp.html', body=data, name=name, id=id)
 
 
 @app.route('/api/v1/sample', methods=['POST'])
@@ -167,16 +175,34 @@ def sample_api():
     if request.method == 'POST':
         data = request.data
         soap = bs(data, "html.parser")
-        title = soap.find('section', class_='header').find('div', class_='titles').find('h1', class_='title-1')
+        try:
+            title = soap.find('section', class_='header').find('div', class_='titles').find('h1', class_='title-1').text
+        except Exception as e:
+            title = 'Стажировка'
         new_sample = Sample(data=request.data,
                             date_create=datetime.utcnow(), date_update=datetime.utcnow(),
-                            state='close', name=title.text if title else 'test')
+                            state='close', name=title)
         db.session.add(new_sample)
         db.session.commit()
         new_realt = SampleUser(relationship='creator' ,userId=user_id, sampleId=new_sample.id)
         db.session.add(new_realt)
         db.session.commit()
         return url_for('sample') + '/' + str(new_sample.id)
+
+@app.route('/api/v1/sample-patch/<id>', methods=['POST'])
+def sample_api_patch(id):
+    role = check_auth(session)
+    if role == 'None':
+        return
+    user_id = session.get('user_id')
+    if request.method == 'POST':
+        data = request.data
+        sample = Sample.query.get(id)
+        if not sample:
+            return
+        sample.data = data
+        db.session.commit()
+        return 'true'
 
 @app.route('/api/v1/exit', methods=['POST'])
 def exit_user():
@@ -192,6 +218,30 @@ def open_sample(id):
     if not sample_query:
         return
     sample_query.state = 'open'
+    db.session.commit()
+    return 'true'
+
+@app.route('/api/v1/close-sample/<id>', methods=['POST'])
+def close_sample(id):
+    role = check_auth(session)
+    if role != 'editor':
+        return
+    sample_query = Sample.query.get(id)
+    if not sample_query:
+        return
+    sample_query.state = 'close'
+    db.session.commit()
+    return 'true'
+
+@app.route('/api/v1/delete-sample/<id>', methods=['POST'])
+def delete_sample(id):
+    role = check_auth(session)
+    if role != 'editor':
+        return
+    sample_query = Sample.query.get(id)
+    if not sample_query:
+        return
+    sample_query.state = 'delete'
     db.session.commit()
     return 'true'
 

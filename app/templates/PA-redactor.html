@@ -28,8 +28,13 @@
                     <img src="../static/img/sample-1.jpg" height="249px" width="296px" class='white'>
                     <h3>{{ item.name }}</h3>
                 </a>
-                <button class="create-internship open-internship" onclick="sendOPEN({{ item.id }})">Открыть для всех
-                </button>
+<!--                <button class="create-internship open-internship" onclick="sendOPEN({{ item.id }})">Открыть для всех-->
+<!--                </button>-->
+                <div class="button-div">
+                      <button class="create-internship open-internship {{ '' if item.state == 'close' else 'hidden' }}" onclick="{OpenButton(); sendOPEN({{ item.id }})}">Открыть для всех</button>
+                      <button class="create-internship close-internship {{ '' if item.state == 'open' else 'hidden' }}" onclick="{CloseButton(); sendCLOSE({{ item.id }})}">Закрыть публикацию</button>
+                      <button class="create-internship delete-internship" onclick="sendDELETE({{ item.id }})">Удалить</button>
+                </div>
             </li>
             {% endfor %}
             <!--                <li class="internship-el">-->
@@ -50,5 +55,6 @@
     </div>
 </main>
 </body>
+<script src="{{ url_for('static', filename='js/rechange-button.js') }}"></script>
 <script src="{{ url_for('static', filename='js/exit.js') }}"></script>
 </html>

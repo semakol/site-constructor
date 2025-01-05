@@ -23,6 +23,32 @@ function sendOPEN(id) {
     });
 }
 
+function sendCLOSE(id) {
+    fetch(`./api/v1/close-sample/${id}`, {
+        method: 'POST'
+    })
+    .then(() => {
+        location.reload();
+        alert('Страница закрыта');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function sendDELETE(id) {
+    fetch(`./api/v1/delete-sample/${id}`, {
+        method: 'POST'
+    })
+    .then(() => {
+        location.reload();
+        alert('Страница удалена');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 function Record(id) {
     fetch(`/api/v1/record/${id}`, {
         method: 'POST'
