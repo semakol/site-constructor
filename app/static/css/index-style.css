@@ -76,14 +76,27 @@ form{
     border-style: solid;
 }
 
-.field{
+.field {
     background-color: #FAFAFA;
     font-size: 35px;
-    padding:  5px;
+    padding: 5px;
     padding-right: 180px;
     margin-bottom: 25px;
     border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход */
 }
+
+.field:hover {
+    background-color: #e0e0e0; /* Цвет фона при наведении */
+    color: #000; /* Цвет текста при наведении */
+}
+
+.field:focus, .field:active {
+    background-color: #d0d0d0; /* Цвет фона при фокусе или активном состоянии */
+    color: #000; /* Цвет текста при фокусе или активном состоянии */
+}
+
+   
 .field.submit{
     padding: 5px 20px;
 

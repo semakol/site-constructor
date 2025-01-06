@@ -366,7 +366,7 @@ p{
     width: 60vw;
 }
 
-.really-button{
+.really-button {
     padding: 11px 74px;
     border-radius: 40px; 
     border-color: black;
@@ -375,8 +375,24 @@ p{
     border-width: 2px;
     border-style: solid;
     background-color: #FF7700;
+    cursor: pointer; /* Изменение курсора при наведении */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход */
+}
+
+.really-button:hover {
+    background-color: #e65c00; /* Цвет фона при наведении */
+    color: white; /* Цвет текста при наведении */
+}
+
+.really-button:active {
+    background-color: #cc4e00; /* Цвет фона при нажатии */
+    color: white; /* Цвет текста при нажатии */
+}
+
+.button-a {
     margin-bottom: 90px;
 }
+
 
 .content-bar, .setting-bar {
     position: fixed;

@@ -11,7 +11,8 @@ header p{
     margin-left: 10%;
     font-size: 32px;
 }
-.internship{
+
+.internship {
     padding: 0.2em 1em;
     border: none;
     font: inherit;
@@ -28,7 +29,22 @@ header p{
     margin-top: 0.2em;
     margin-bottom: 0.2em;
     margin-left: 0.5em;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Плавный переход */
 }
+
+.internship:hover {
+    background-color: #f0f0f0; /* Цвет фона при наведении */
+    color: #000; /* Цвет текста при наведении */
+    border-color: #ccc; /* Цвет границы при наведении */
+}
+
+.internship:active {
+    background-color: #d0d0d0; /* Цвет фона при нажатии */
+    color: #000; /* Цвет текста при нажатии */
+    border-color: #aaa; /* Цвет границы при нажатии */
+}
+
+
 body{
         font-family: 'Manrope';
         color: black;
@@ -134,12 +150,50 @@ h4{
     margin-bottom: 0.2em;
     margin-left: 0.5em;
 }
-.create-internship,.open-internship{
-    color: black;
-    background-color:#E9E9E9;
-    border-color:#FF7700;
-    margin-bottom: 1em
+
+.exit:hover {
+    background-color: #cccccc; /* Цвет фона при наведении */
+    color: #000000; /* Цвет текста при наведении */
+    border-color: #888888; /* Цвет границы при наведении */
 }
+
+.exit:active {
+    background-color: #aaaaaa; /* Цвет фона при нажатии */
+    color: #000000; /* Цвет текста при нажатии */
+    border-color: #666666; /* Цвет границы при нажатии */
+}
+
+.create-internship, .open-internship {
+    color: black;
+    background-color: #E9E9E9;
+    border-color: #FF7700; /* Начальные цвета */
+    margin-bottom: 1em;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Плавный переход */
+}
+
+.create-internship, .open-internship {
+    color: black;
+    background-color: #E9E9E9;
+    border-color: #FF7700; /* Начальные цвета */
+    margin-bottom: 1em;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Плавный переход */
+}
+
+.create-internship:hover, .open-internship:hover {
+    background-color: #d9d9d9; /* Затемнение фона при наведении */
+    color: black; /* Цвет текста при наведении */
+    border-color: #FF7700; /* Оставляем начальный цвет границы */
+}
+
+.create-internship:active, .open-internship:active {
+    background-color: #c9c9c9; /* Затемнение фона при нажатии */
+    color: black; /* Цвет текста при нажатии */
+    border-color: #FF7700; /* Оставляем начальный цвет границы */
+}
+
+
+
+
 .open-internship{
     margin-left: auto;
 }
