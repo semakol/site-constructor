@@ -73,11 +73,6 @@ def registration():
                 return redirect(url_for('PA_student'))
     return render_template('registration.html', form=form)
 
-
-@app.route('/internship')
-def internship():
-    return render_template('internship.html')
-
 @app.route('/PA-record-student')
 def PA_record_student():
     role = check_auth(session)
@@ -114,12 +109,12 @@ def PA_student():
     role = check_auth(session)
     if role == 'None':
         return redirect(url_for('auth'))
-    results = (db.session.query(Sample, SampleUser).join(SampleUser)
+    results = (db.session.query(Sample)
                .filter(Sample.state == 'open')
                .limit(4).all())
     data = [
-        {'id': item[0].id,
-         'name': item[0].name}
+        {'id': item.id,
+         'name': item.name}
         for item in results
     ]
     return render_template('PA-student.html', data=data)
@@ -149,9 +144,9 @@ def sample_check(sample_id):
     if role == 'intern':
         soup = bs(data, "html.parser")
         hidden = soup.find_all(class_=['hidden', 'setting', 'content', 'trash', 'on-off'])
-        # record = soup.find('button', class_='button-a')
-        # if record:
-        #     record['onclick'] = f'Record({sample_id})'
+        record = soup.find('button', class_='button-a')
+        if record:
+            record['onclick'] = f'Record({sample_id})'
         for i in hidden:
             i.decompose()
         data = soup.prettify()
@@ -161,7 +156,8 @@ def sample_check(sample_id):
         sections = soup.find_all('section')
         for section in sections:
             button = section.find_next('button', class_='trash')
-            button['onclick'] = "{document.querySelector("+ '\'.' +section.attrs['class'][0] + "'" +").remove();}"
+            if button:
+                button['onclick'] = "{document.querySelector("+ '\'.' +section.attrs['class'][0] + "'" +").remove();}"
             data = soup.prettify()
         return render_template('style-temp.html', body=data, name=name, id=id)
 
@@ -268,6 +264,9 @@ def record_sample(id):
     role = check_auth(session)
     if role == 'None':
         return
+    query_rel = SampleUser.query.filter(SampleUser.userId==session['user_id'], SampleUser.sampleId==id).all()
+    if query_rel:
+        return ''
     new_rel = SampleUser(relationship='record', userId=session['user_id'], sampleId=id)
     db.session.add(new_rel)
     db.session.commit()

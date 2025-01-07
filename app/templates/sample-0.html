@@ -46,7 +46,6 @@
                 <button class="header-setting setting" onclick="{document.querySelector('.setting-header-bar').classList.remove('hidden');}">Настройки</button>
                 <button class="header-content content" onclick="{document.querySelector('.header-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '{{ url_for("static", filename="img/trash.svg") }}' height="25px" width="23px"></button>
-                <button class="on-off"><img src = '{{ url_for("static", filename="img/on-off.svg") }}' height="26px" width="23px"></button>
             </div>
 
             <div class="titles">
@@ -126,7 +125,6 @@
                 <button class="info-setting setting" onclick="{document.querySelector('.setting-info-bar').classList.remove('hidden');}">Настройки</button>
                 <button class="info-content content" onclick="{document.querySelector('.info-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '{{ url_for("static", filename="img/trash.svg") }}' height="25px" width="23px"></button>
-                <button class="on-off"><img src = '{{ url_for("static", filename="img/on-off.svg") }}' height="26px" width="23px"></button>
             </div>
 
             <div class="info-div">
@@ -199,7 +197,6 @@
                 <button class="prospects-setting setting" onclick="{document.querySelector('.setting-prospects-bar').classList.remove('hidden');}">Настройки</button>
                 <button class="info-content content" onclick="{document.querySelector('.prospects-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '{{ url_for("static", filename="img/trash.svg") }}' height="25px" width="23px"></button>
-                <button class="on-off"><img src = '{{ url_for("static", filename="img/on-off.svg") }}' height="26px" width="23px"></button>
             </div>
 
             <div class="prospects-div">
@@ -268,15 +265,16 @@
                 <button class="info-setting setting" onclick="{document.querySelector('.setting-button-bar').classList.remove('hidden');}">Настройки</button>
                 <button class="info-content content" onclick="{document.querySelector('.button-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '{{ url_for("static", filename="img/trash.svg") }}' height="25px" width="23px"></button>
-                <button class="on-off"><img src = '{{ url_for("static", filename="img/on-off.svg") }}' height="26px" width="23px"></button>
             </div>
 
-            <button class="button-a really-button">Записаться на стажировку</button>
+            <a href = '#' class="button-a"><button class="really-button">Кнопка</button></a>
 
             <div class="content-bar button-bar hidden">
                 <button class="save" onclick="buttonClick()">Сохранить</button>
                 <p>Текст в кнопке</p>
-                <input type="text" value="Записаться на стажировку" class="input-button-0">
+                <input type="text" value="Кнопка" class="input-button-0">
+                <p>Действие при нажатии(переход по ссылке)</p>
+                <input type="text" value='#' class="input-button-1">
             </div>
 
             <div class="setting-bar setting-button-bar hidden">
@@ -318,7 +316,6 @@
                 <button class="info-setting setting" onclick="{document.querySelector('.setting-contact-bar').classList.remove('hidden');}">Настройки</button>
                 <button class="info-content content" onclick="{document.querySelector('.contact-bar').classList.remove('hidden');}">Контент</button>
                 <button class="trash"><img src = '{{ url_for("static", filename="img/trash.svg") }}' height="25px" width="23px"></button>
-                <button class="on-off"><img src = '{{ url_for("static", filename="img/on-off.svg") }}' height="26px" width="23px"></button>
             </div>
             <div class="contact-div">
                 <div class="contact-data">

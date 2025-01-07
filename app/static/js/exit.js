@@ -54,7 +54,6 @@ function Record(id) {
         method: 'POST'
     })
     .then(() => {
-        window.location.href = "/PA-record-student";
     })
     .catch(error => {
         console.error('Error:', error);
