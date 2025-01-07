@@ -207,6 +207,9 @@ h2{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-position: center; /* Центрируем изображение */
+    background-size: cover; /* Растягиваем изображение на весь блок */
+    background-repeat: no-repeat;
 }
 .header {
     position: relative;
