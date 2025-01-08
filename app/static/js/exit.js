@@ -54,6 +54,8 @@ function Record(id) {
         method: 'POST'
     })
     .then(() => {
+        alert('Запись оформлена');
+        window.location.href = "/PA-record-student";
     })
     .catch(error => {
         console.error('Error:', error);

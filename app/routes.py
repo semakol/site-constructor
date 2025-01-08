@@ -144,13 +144,16 @@ def sample_check(sample_id):
     if role == 'intern':
         soup = bs(data, "html.parser")
         hidden = soup.find_all(class_=['hidden', 'setting', 'content', 'trash', 'on-off'])
-        record = soup.find('button', class_='button-a')
-        if record:
+        records = soup.find_all('button', class_='really-button')
+        for record in records:
             record['onclick'] = f'Record({sample_id})'
+        button = False
+        if len(records) == 0:
+            button = True
         for i in hidden:
             i.decompose()
         data = soup.prettify()
-        return render_template('style-temp-2.html', body=data, name=name)
+        return render_template('style-temp-2.html', body=data, name=name, button=button, id=sample_id)
     else:
         soup = bs(data, "html.parser")
         sections = soup.find_all('section')

@@ -14,6 +14,17 @@
 <main>
     <section class="page">
         {{ body | safe }}
+        {% if button %}
+        <section class="button block" style="background-color: rgb(255, 255, 255); background-image: none;">
+            <div class="buttons">
+            </div>
+            <a class="button-a" href='{{ url_for("PA_record_student") }}'>
+                <button class="really-button" onclick="Record({{ id }})">
+                    Записаться на стажировку
+                </button>
+            </a>
+        </section>
+        {% endif %}
     </section>
 </main>
 </body>
