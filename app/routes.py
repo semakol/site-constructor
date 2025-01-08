@@ -145,11 +145,11 @@ def sample_check(sample_id):
         soup = bs(data, "html.parser")
         hidden = soup.find_all(class_=['hidden', 'setting', 'content', 'trash', 'on-off'])
         records = soup.find_all('button', class_='really-button')
-        for record in records:
-            record['onclick'] = f'Record({sample_id})'
-        button = False
-        if len(records) == 0:
-            button = True
+        # for record in records:
+        #     record['onclick'] = f'Record({sample_id})'
+        button = True
+        # if len(records) == 0:
+        #     button = True
         for i in hidden:
             i.decompose()
         data = soup.prettify()
