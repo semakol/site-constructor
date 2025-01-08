@@ -1,12 +1,11 @@
-function sendHTML(){
+function sendHTML() {
     const page = document.querySelector('.page'); 
     const clonedPage = page.cloneNode(true); 
 
-    // const elementsToRemove = clonedPage.querySelectorAll('.hidden, .setting, .content, .trash, .on-off');
-    // elementsToRemove.forEach(element => element.remove()); 
-
+    // Получаем HTML содержимое клонированной страницы
     const filteredHtml = clonedPage.innerHTML;
 
+    // Отправляем HTML на сервер через POST запрос
     fetch('./api/v1/sample', {
         method: 'POST',
         headers: {
@@ -23,6 +22,7 @@ function sendHTML(){
     .then(data => {
         console.log('Success:', data);
         alert('Страница отправлена');
+        // Перенаправляем пользователя на другую страницу
         window.location.href = "/PA-redactor";
     })
     .catch(error => {
@@ -30,15 +30,14 @@ function sendHTML(){
     });
 }
 
-function patchHTML(id){
+function patchHTML(id) {
     const page = document.querySelector('.page');
     const clonedPage = page.cloneNode(true);
 
-    // const elementsToRemove = clonedPage.querySelectorAll('.hidden, .setting, .content, .trash, .on-off');
-    // elementsToRemove.forEach(element => element.remove());
-
+    // Получаем HTML содержимое клонированной страницы
     const filteredHtml = clonedPage.innerHTML;
 
+    // Отправляем HTML на сервер через POST запрос с указанием ID
     fetch(`../api/v1/sample-patch/${id}`, {
         method: 'POST',
         headers: {
@@ -55,6 +54,7 @@ function patchHTML(id){
     .then(data => {
         console.log('Success:', data);
         alert('Страница отправлена');
+        // Перенаправляем пользователя на другую страницу
         window.location.href = "/PA-redactor";
     })
     .catch(error => {

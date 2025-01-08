@@ -8,6 +8,7 @@ body{
     align-items: center;
     overflow-x: hidden;
 }
+
 .new-block {
     padding: 0.5em 2em;
     border: none; 
@@ -52,7 +53,6 @@ body{
         margin-bottom: 0.3em;
     }
 }
-
 
 .block-bar {
     position: fixed;
@@ -131,6 +131,7 @@ body{
     padding: 0;
     margin-top: 9px;
 }
+
 .block-list{
     list-style: none;
     margin: 0;
@@ -139,6 +140,7 @@ body{
     flex-direction: column;
     gap:23px
 }
+
 .block-item{
     border-bottom: 2px solid #DBDBDB; 
     padding-bottom: 2px;
@@ -189,12 +191,14 @@ h1{
     background-color: #D9D9D9;
     background-color: rgba(217, 217, 217, 0.2);
 }
+
 h2{
     font-size: 40px;
     margin: 0;
     color: #FFFFFF;
     margin-bottom: 174px;
 }
+
 .page{
     width: 100vw;
     max-width: 100%;
@@ -203,6 +207,7 @@ h2{
     justify-content: center;
     align-items: center;
 }
+
 .header, .titles, .buttons, .info,.prospects,.button,.contact{
     display: flex;
     flex-direction: column;
@@ -211,6 +216,7 @@ h2{
     background-size: cover; /* Растягиваем изображение на весь блок */
     background-repeat: no-repeat;
 }
+
 .header {
     position: relative;
     background-image: url('../img/title-1.jpg');
@@ -223,12 +229,14 @@ h2{
     position: relative;
     background-repeat: no-repeat;
 }
+
 .titles, .buttons{
     position: relative;
     z-index: 3;
     color: #fff;
     text-align: center; 
 }
+
 .buttons{
     color: black;
 }
@@ -260,52 +268,6 @@ h2{
     gap: 2.6875em;
 }
 
-/* Адаптивная верстка для .buttons */
-@media (max-width: 1024px) {
-    .buttons {
-        margin: 2.5em 8em 2.5em 8em;
-        gap: 2em;
-    }
-}
-
-@media (max-width: 768px) {
-    .buttons {
-        margin: 2em 5em 2em 5em;
-        flex-direction: column;
-        gap: 1.5em;
-        width: 95vw;
-    }
-}
-
-@media (max-width: 480px) {
-    .buttons {
-        margin: 1.5em 2em 1.5em 2em;
-        gap: 1em;
-        width: 100vw;
-    }
-}
-
-
-/* Адаптивная верстка для .content */
-@media (max-width: 1024px) {
-    .content {
-        margin-right: 50vw;
-    }
-}
-
-@media (max-width: 768px) {
-    .content {
-        margin-right: 40vw;
-    }
-}
-
-@media (max-width: 480px) {
-    .content {
-        margin-right: 30vw;
-    }
-}
-
-
 .content, .setting, .trash, .on-off{
     border: none; 
     font: inherit;
@@ -317,6 +279,7 @@ h2{
     font-size: 20px;
     padding: 5px 11px;
 }
+
 .trash, .on-off{
     padding: 8px 11px 2px 11px;
 }
@@ -346,11 +309,13 @@ section section{
     box-decoration-break: clone;
     text-align: center;
 }
+
 p{
     margin: 0;
     font-size: 24px;
     padding-bottom: 15px;
 }
+
 .info-div, .prospects-div, .contact-data{
     padding: 20px 100px 13px 100px;
     border-radius: 20px; 
@@ -395,7 +360,6 @@ p{
 .button-a {
     margin-bottom: 90px;
 }
-
 
 .content-bar, .setting-bar {
     position: fixed;
@@ -557,19 +521,23 @@ textarea{
     width: 100%;
     justify-content: space-between;
 }
+
 .contact-list{
     list-style: none;
     margin: 0;
     padding: 0;
 }
+
 .contact-list p{
     font-size: 20px;
 }
+
 .on-info{
     padding: 0;
     padding-bottom: 5px;
     font-weight: bold;
 }
+
 .contact-list li a{
     text-decoration: none;
     color:black;
@@ -592,6 +560,7 @@ textarea{
     display: flex;
     padding: 0;   
 }
+
 .save-page, .submit-page{
     margin: 0;
     color: white;
@@ -641,8 +610,3 @@ textarea{
 .block {
     width: 100%;
 }
-
-/* button:focus{
-    border-style: solid;
-    border-color: #FF7700;
-} */
