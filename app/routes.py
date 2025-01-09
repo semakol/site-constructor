@@ -1,4 +1,6 @@
 from datetime import datetime
+
+import random
 from werkzeug.utils import redirect
 from bs4 import BeautifulSoup as bs
 
@@ -83,7 +85,8 @@ def PA_record_student():
                .limit(4).all())
     data = [
         {'id': item[0].id,
-         'name': item[0].name}
+         'name': item[0].name,
+         'image': item[0].image}
         for item in results
     ]
     return render_template('PA-record-student.html', data=data)
@@ -99,7 +102,8 @@ def PA_redactor():
     data = [
         {'id': item[0].id,
          'name': item[0].name,
-         'state': item[0].state}
+         'state': item[0].state,
+         'image': item[0].image}
         for item in results
     ]
     return render_template('PA-redactor.html', data=data)
@@ -114,7 +118,8 @@ def PA_student():
                .limit(4).all())
     data = [
         {'id': item.id,
-         'name': item.name}
+         'name': item.name,
+         'image': item.image}
         for item in results
     ]
     return render_template('PA-student.html', data=data)
@@ -178,9 +183,10 @@ def sample_api():
             title = soap.find('section', class_='header').find('div', class_='titles').find('h1', class_='title-1').text
         except Exception as e:
             title = 'Стажировка'
+        image = random.choice(('sample-icon1', 'sample-icon2', 'sample-icon3'))
         new_sample = Sample(data=request.data,
                             date_create=datetime.utcnow(), date_update=datetime.utcnow(),
-                            state='close', name=title)
+                            state='close', name=title, image=image)
         db.session.add(new_sample)
         db.session.commit()
         new_realt = SampleUser(relationship='creator' ,userId=user_id, sampleId=new_sample.id)
@@ -243,24 +249,6 @@ def delete_sample(id):
     sample_query.state = 'delete'
     db.session.commit()
     return 'true'
-
-@app.route('/api/v1/image-save', methods=['POST'])
-def image_save():
-    # role = check_auth(session)
-    # if role != 'editor':
-    #     return
-    data = request.data
-    new_image = Images(image=data)
-    db.session.add(new_image)
-    db.session.commit()
-    return f'/api/v1/image/{new_image.id}'
-
-@app.route('/api/v1/image/id')
-def image_get(id):
-    image = Images.query.get(id)
-    if not image:
-        return None
-    return f'data:image/png;base64,{image.image}'
 
 @app.route('/api/v1/record/<id>', methods=['POST'])
 def record_sample(id):

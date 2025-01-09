@@ -26,7 +26,7 @@
                 {% for item in data %}
                 <li class="internship-el">
                   <a href="{{ url_for('sample') }}/{{ item.id }}" class='white'>
-                    <img src="{{ url_for('static', filename='img/decor-index.png') }}" height="249px" width="296px" class='white'>
+                    <img src="{{ url_for('static', filename='img/' + item.image + '.jpg') }}" height="249px" width="296px" class='white'>
                     <h3>{{ item.name }}</h3>
                   </a>
                 </li>
