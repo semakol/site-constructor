@@ -81,15 +81,14 @@ def PA_record_student():
     if role == 'None':
         return redirect(url_for('auth'))
     results = (db.session.query(Sample, SampleUser).join(SampleUser)
-               .filter(SampleUser.userId == session['user_id'], SampleUser.relationship == 'record')
-               .limit(4).all())
+               .filter(SampleUser.userId == session['user_id'], SampleUser.relationship == 'record', Sample.state != 'delete').all())
     data = [
         {'id': item[0].id,
          'name': item[0].name,
          'image': item[0].image}
         for item in results
     ]
-    return render_template('PA-record-student.html', data=data)
+    return render_template('PA-record-student.html', data=[data[i:i+4] for i in range(0, len(data), 4)])
 
 @app.route('/PA-redactor')
 def PA_redactor():
@@ -98,7 +97,7 @@ def PA_redactor():
         return redirect(url_for('auth'))
     results = (db.session.query(Sample, SampleUser).join(SampleUser)
                .filter(SampleUser.userId == session['user_id'], SampleUser.relationship=='creator', Sample.state!='delete')
-               .limit(4).all())
+               .all())
     data = [
         {'id': item[0].id,
          'name': item[0].name,
@@ -106,7 +105,7 @@ def PA_redactor():
          'image': item[0].image}
         for item in results
     ]
-    return render_template('PA-redactor.html', data=data)
+    return render_template('PA-redactor.html', data=[data[i:i+4] for i in range(0, len(data), 4)]  )
 
 @app.route('/PA-student')
 def PA_student():
@@ -114,15 +113,14 @@ def PA_student():
     if role == 'None':
         return redirect(url_for('auth'))
     results = (db.session.query(Sample)
-               .filter(Sample.state == 'open')
-               .limit(4).all())
+               .filter(Sample.state == 'open').all())
     data = [
         {'id': item.id,
          'name': item.name,
          'image': item.image}
         for item in results
     ]
-    return render_template('PA-student.html', data=data)
+    return render_template('PA-student.html', data=[data[i:i+4] for i in range(0, len(data), 4)])
 
 @app.route('/sample')
 def sample():

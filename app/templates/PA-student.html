@@ -21,9 +21,10 @@
           <h1 class = 'inter-h1'>Доступные стажировки</h1>
           <h2>Выберите то, что вам подходит</h2>
         </section>
+        {% for items in data %}
         <section class="internships">
             <ul class="'internship-list">
-                {% for item in data %}
+                {% for item in items %}
                 <li class="internship-el">
                   <a href="{{ url_for('sample') }}/{{ item.id }}" class='white'>
                     <img src="{{ url_for('static', filename='img/' + item.image + '.jpg') }}" height="249px" width="296px" class='white'>
@@ -33,6 +34,7 @@
                 {% endfor %}
             </ul>
         </section>
+        {% endfor %}
     </main>
 </body>
 <script src="{{ url_for('static', filename='js/exit.js') }}"></script>
