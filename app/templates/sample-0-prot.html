@@ -42,10 +42,10 @@
         </section>
 
 
-        <section class="header block hidden">
+        <section class="header block hidden" data-template>
             <div class="buttons">
-                <button class="header-setting setting" onclick="{document.querySelector('.setting-header-bar').classList.remove('hidden');}">Настройки</button>
-                <button class="header-content content" onclick="{document.querySelector('.header-bar').classList.remove('hidden');}">Контент</button>
+                <button class="header-setting setting">Настройки</button>
+                <button class="header-content content">Контент</button>
                 <button class="trash"><img src = '../static/img/trash.svg' height="25px" width="23px"></button>
             </div>
 
@@ -56,7 +56,7 @@
             </div>
 
             <div class="content-bar header-bar hidden">
-                <button class="save" onclick="headerClick()">Сохранить</button>
+                <button class="save">Сохранить</button>
                 <p>Надзаголовок</p>
                 <input type="text" value="Надзаголовок" class="input-title-0">
                 <p>Заголовок</p>
@@ -66,14 +66,7 @@
             </div>
 
             <div class="setting-bar setting-header-bar hidden">
-                <button class="save" onclick="headerSettingClick()">Сохранить</button>
-
-                <p>Горизонтальное выравнивание</p>
-                <div class="position-x-div">
-                    <button onclick="setHorizontalAlignment('left','titles')">по левой границе</button>
-                    <button onclick="setHorizontalAlignment('center','titles')">по центру</button>
-                    <button onclick="setHorizontalAlignment('right','titles')">по правой границе</button>
-                </div>
+                <button class="save save-header">Сохранить</button>
                 <p>Размер шрифта</p>
                 <div class="position-x-div">
                     <div class="little-div">
@@ -109,13 +102,10 @@
                 <div>
                     <input type="color" class="header-border-color" name="header-border"
                      onclick="{document.querySelector('.title-1').classList.remove('none-color');}" value="#FF7700"/>
-                    <button class="header-color-none color-none" 
-                    onclick="{document.querySelector('.title-1').classList.add('none-color');}"></button> 
                 </div>
                 <p>Фоновое изображение</p>
                 <input class="input-img" type="file" value="Загрузить файл">
                 <p>Только цвет</p>
-
                 <input type="color" class="head-color" name="head" value="#ffffff">
             </div>
         </section>

@@ -1,64 +1,79 @@
-function setHorizontalAlignment(pos, place) {
-    const titlesSection = document.querySelector('.' + place);
-    if (pos === 'center') {
-        titlesSection.style.marginLeft = 0;
-        titlesSection.style.marginRight = 0;
-    } else if (pos === 'right') {
-        titlesSection.style.marginLeft = '50%';
-        titlesSection.style.marginRight = 0;
-    } else if (pos === 'left') {
-        titlesSection.style.marginRight = '50%';
-        titlesSection.style.marginLeft = 0;
-    }
-}
+function headerSettingClick(event) {
+    const block = event.target.closest('.block');
+    if (!block) return;
 
-function headerSettingClick() {
-    // Получаем значения из полей ввода
-    const headingSize = document.querySelector('.input-setting-header-0').value;
-    const titleSize = document.querySelector('.input-setting-header-1').value;
-    const descriptionSize = document.querySelector('.input-setting-header-2').value;
+    // Исходные значения
+    const original = {
+        background: block.dataset.originalBackground,
+        fontSize: [block.dataset.originalFontSize0, block.dataset.originalFontSize1, block.dataset.originalFontSize2],
+        fontColor: [block.dataset.originalFontColor0, block.dataset.originalFontColor1, block.dataset.originalFontColor2],
+        borderColor: block.dataset.originalBorderColor,
+        headColor: block.dataset.originalHeadColor
+    };
 
-    const headingColor = document.querySelector('.header-color-0').value;
-    const titleColor = document.querySelector('.header-color-1').value;
-    const descriptionColor = document.querySelector('.header-color-2').value;
-    const headerBorderColor = document.querySelector('.header-border-color').value;
+    // Новые значения
+    const inputs = {
+        fontSize: ['.input-setting-header-0', '.input-setting-header-1', '.input-setting-header-2'],
+        fontColor: ['.header-color-0', '.header-color-1', '.header-color-2'],
+        borderColor: '.header-border-color',
+        headColor: '.head-color',
+        fileInput: '.input-img'
+    };
 
-    // Применяем настройки к заголовкам
-    const titlesSection = document.querySelector('.titles');
+    // Находим заголовки
+    const titles = ['.title-0', '.title-1', '.tile-2'].map(selector => block.querySelector(selector));
 
-    // Устанавливаем размеры шрифтов
-    titlesSection.querySelector('h2.title-0').style.fontSize = headingSize + 'px';
-    titlesSection.querySelector('h1.title-1').style.fontSize = titleSize + 'px';
-    titlesSection.querySelector('h2.tile-2').style.fontSize = descriptionSize + 'px';
+    // Логика фона
+    const fileInput = block.querySelector(inputs.fileInput);
+    const headColorInput = block.querySelector(inputs.headColor);
 
-    // Устанавливаем цвета шрифтов
-    titlesSection.querySelector('h2.title-0').style.color = headingColor;
-    titlesSection.querySelector('h1.title-1').style.color = titleColor;
-    titlesSection.querySelector('h2.tile-2').style.color = descriptionColor;
-
-    if (!document.querySelector('.title-1').classList.contains('none-color')) {
-        titlesSection.querySelector('h1.title-1').style.borderColor = headerBorderColor;
-    } else {
-        titlesSection.querySelector('h1.title-1').style.borderColor = 'transparent';
-    }
-
-    // Устанавливаем цвет фона
-    var fileInput = document.querySelector('.input-img');
-    var colorInput = document.querySelector('.head-color');
-    var reader = new FileReader();
-    if (colorInput.value && !fileInput.files[0]) {
-        // Если выбран цвет, удаляем фоновое изображение и устанавливаем цвет
-        document.querySelector('.header').style.backgroundColor = colorInput.value;
-        document.querySelector('.header').style.backgroundImage = 'none';
-    } else {
-        reader.onload = function (e) {
-            document.querySelector('.header').style.backgroundColor = 'transparent';
-            document.querySelector('.header').style.backgroundImage = `url(${e.target.result})`;
-        }
+    if (fileInput?.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            block.style.backgroundImage = `url(${e.target.result})`;
+            block.style.backgroundColor = 'transparent';
+        };
         reader.readAsDataURL(fileInput.files[0]);
+    } else if (headColorInput?.value !== original.headColor) {
+        block.style.backgroundColor = headColorInput.value;
+        block.style.backgroundImage = 'none';
+    } else {
+        block.style.backgroundImage = original.background;
+        block.style.backgroundColor = 'transparent';
     }
-    document.querySelector('.title-1').classList.remove('none-color');
-    document.querySelector('.setting-header-bar').classList.add('hidden');
+
+    // Логика размера шрифта и цвета
+    inputs.fontSize.forEach((selector, index) => {
+        const input = block.querySelector(selector);
+        const title = titles[index];
+        if (input && title) {
+            title.style.fontSize = input.value !== original.fontSize[index]
+                ? `${input.value}px`
+                : `${original.fontSize[index]}px`;
+        }
+    });
+
+    inputs.fontColor.forEach((selector, index) => {
+        const input = block.querySelector(selector);
+        const title = titles[index];
+        if (input && title) {
+            title.style.color = input.value !== original.fontColor[index]
+                ? input.value
+                : original.fontColor[index];
+        }
+    });
+
+    // Логика цвета границы
+    const borderColorInput = block.querySelector(inputs.borderColor);
+    const title1 = titles[1];
+    if (borderColorInput && title1) {
+        title1.style.borderColor = borderColorInput.value !== original.borderColor
+            ? borderColorInput.value
+            : original.borderColor;
+    }
+
+    // Скрываем панель настроек
+    block.querySelector('.setting-header-bar')?.classList.add('hidden');
 }
 
 function infoSettingClick() {
