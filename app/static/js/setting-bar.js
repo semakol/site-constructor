@@ -1,245 +1,330 @@
-function headerSettingClick(event) {
-    const block = event.target.closest('.block');
-    if (!block) return;
+function headerSettingClick(block) {
+  // Исходные значения
+  const original = {
+    background: block.dataset.originalBackground,
+    fontSize: [
+      block.dataset.originalFontSize0,
+      block.dataset.originalFontSize1,
+      block.dataset.originalFontSize2,
+    ],
+    fontColor: [
+      block.dataset.originalFontColor0,
+      block.dataset.originalFontColor1,
+      block.dataset.originalFontColor2,
+    ],
+    borderColor: block.dataset.originalBorderColor,
+    headColor: block.dataset.originalHeadColor,
+  };
 
-    // Исходные значения
-    const original = {
-        background: block.dataset.originalBackground,
-        fontSize: [block.dataset.originalFontSize0, block.dataset.originalFontSize1, block.dataset.originalFontSize2],
-        fontColor: [block.dataset.originalFontColor0, block.dataset.originalFontColor1, block.dataset.originalFontColor2],
-        borderColor: block.dataset.originalBorderColor,
-        headColor: block.dataset.originalHeadColor
+  // Новые значения
+  const inputs = {
+    fontSize: [
+      ".input-setting-header-0",
+      ".input-setting-header-1",
+      ".input-setting-header-2",
+    ],
+    fontColor: [".header-color-0", ".header-color-1", ".header-color-2"],
+    borderColor: ".header-border-color",
+    headColor: ".head-color",
+    fileInput: ".input-img",
+  };
+
+  // Находим заголовки
+  const titles = [".title-0", ".title-1", ".tile-2"].map((selector) =>
+    block.querySelector(selector)
+  );
+
+  // Логика фона
+  const fileInput = block.querySelector(inputs.fileInput);
+  const headColorInput = block.querySelector(inputs.headColor);
+
+  if (fileInput?.files[0]) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      block.style.backgroundImage = `url(${e.target.result})`;
+      block.style.backgroundColor = "transparent";
     };
+    reader.readAsDataURL(fileInput.files[0]);
+  } else if (headColorInput?.value !== original.headColor) {
+    block.style.backgroundColor = headColorInput.value;
+    block.style.backgroundImage = "none";
+  } else {
+    block.style.backgroundImage = original.background;
+    block.style.backgroundColor = "transparent";
+  }
 
-    // Новые значения
-    const inputs = {
-        fontSize: ['.input-setting-header-0', '.input-setting-header-1', '.input-setting-header-2'],
-        fontColor: ['.header-color-0', '.header-color-1', '.header-color-2'],
-        borderColor: '.header-border-color',
-        headColor: '.head-color',
-        fileInput: '.input-img'
-    };
+  // Логика размера шрифта и цвета
+  inputs.fontSize.forEach((selector, index) => {
+    const input = block.querySelector(selector);
+    const title = titles[index];
+    if (input && title) {
+      title.style.fontSize =
+        input.value !== original.fontSize[index]
+          ? `${input.value}px`
+          : `${original.fontSize[index]}px`;
+    }
+  });
 
-    // Находим заголовки
-    const titles = ['.title-0', '.title-1', '.tile-2'].map(selector => block.querySelector(selector));
+  inputs.fontColor.forEach((selector, index) => {
+    const input = block.querySelector(selector);
+    const title = titles[index];
+    if (input && title) {
+      title.style.color =
+        input.value !== original.fontColor[index]
+          ? input.value
+          : original.fontColor[index];
+    }
+  });
 
-    // Логика фона
-    const fileInput = block.querySelector(inputs.fileInput);
-    const headColorInput = block.querySelector(inputs.headColor);
+  // Логика цвета границы
+  const borderColorInput = block.querySelector(inputs.borderColor);
+  const title1 = titles[1];
+  if (borderColorInput && title1) {
+    title1.style.borderColor =
+      borderColorInput.value !== original.borderColor
+        ? borderColorInput.value
+        : original.borderColor;
+  }
 
-    if (fileInput?.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            block.style.backgroundImage = `url(${e.target.result})`;
-            block.style.backgroundColor = 'transparent';
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-    } else if (headColorInput?.value !== original.headColor) {
-        block.style.backgroundColor = headColorInput.value;
-        block.style.backgroundImage = 'none';
-    } else {
-        block.style.backgroundImage = original.background;
-        block.style.backgroundColor = 'transparent';
+  // Скрываем панель настроек
+  block.querySelector(".setting-header-bar")?.classList.add("hidden");
+}
+
+function infoSettingClick(block) {
+  // Получаем значения из полей ввода
+  const headingSizeInput = block.querySelector(".input-setting-info-0");
+  const titleSizeInput = block.querySelector(".input-setting-info-1");
+  const headingColorInput = block.querySelector(".info-color-0");
+  const titleColorInput = block.querySelector(".info-color-1");
+  const borderColorInput = block.querySelector(".info-border-color");
+  const borderH2ColorInput = block.querySelector(".info-h2-border-color");
+  const fileInput = block.querySelector(".input-img-info");
+  const colorInput = block.querySelector(".info-color");
+
+  // Проверяем, что элементы существуют
+  if (
+    !headingSizeInput ||
+    !titleSizeInput ||
+    !headingColorInput ||
+    !titleColorInput
+  ) {
+    console.error("Input elements not found in info block.");
+    return;
+  }
+
+  // Применяем настройки
+  const titlesSection = block.querySelector(".info-div");
+  if (titlesSection) {
+    const h2 = titlesSection.querySelector("h2");
+    const p = titlesSection.querySelector("p");
+
+    if (h2) {
+      h2.style.fontSize = headingSizeInput.value + "px";
+      h2.style.color = headingColorInput.value;
+      titlesSection.style.borderColor = borderColorInput.value;
+      h2.style.setProperty("--c", borderH2ColorInput.value);
     }
 
-    // Логика размера шрифта и цвета
-    inputs.fontSize.forEach((selector, index) => {
-        const input = block.querySelector(selector);
-        const title = titles[index];
-        if (input && title) {
-            title.style.fontSize = input.value !== original.fontSize[index]
-                ? `${input.value}px`
-                : `${original.fontSize[index]}px`;
-        }
+    if (p) {
+      p.style.fontSize = titleSizeInput.value + "px";
+      p.style.color = titleColorInput.value;
+    }
+  }
+
+  // Логика фона
+  if (colorInput && fileInput) {
+    if (fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        block.style.backgroundImage = `url(${e.target.result})`;
+        block.style.backgroundColor = "transparent";
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    } else if (colorInput.value) {
+      block.style.backgroundColor = colorInput.value;
+      block.style.backgroundImage = "none";
+    }
+  }
+
+  // Скрываем панель настроек
+  block.querySelector(".setting-info-bar")?.classList.add("hidden");
+}
+
+function prospectsSettingClick(block) {
+  // Получаем значения из полей ввода
+  const headingSizeInput = block.querySelector(".input-setting-prospects-0");
+  const titleSizeInput = block.querySelector(".input-setting-prospects-1");
+  const headingColorInput = block.querySelector(".prospects-color-0");
+  const titleColorInput = block.querySelector(".prospects-color-1");
+  const borderColorInput = block.querySelector(".prospects-border-color");
+  const borderH2ColorInput = block.querySelector(".prospects-h2-border-color");
+  const fileInput = block.querySelector(".input-img-prospects");
+  const colorInput = block.querySelector(".prospects-color");
+
+  // Проверяем, что элементы существуют
+  if (
+    !headingSizeInput ||
+    !titleSizeInput ||
+    !headingColorInput ||
+    !titleColorInput
+  ) {
+    console.error("Input elements not found in prospects block.");
+    return;
+  }
+
+  // Применяем настройки
+  const titlesSection = block.querySelector(".prospects-div");
+  if (titlesSection) {
+    const h2 = titlesSection.querySelector("h2");
+    const p = titlesSection.querySelector("p");
+
+    if (h2) {
+      h2.style.fontSize = headingSizeInput.value + "px";
+      h2.style.color = headingColorInput.value;
+      titlesSection.style.borderColor = borderColorInput.value;
+      h2.style.setProperty("--c", borderH2ColorInput.value);
+    }
+
+    if (p) {
+      p.style.fontSize = titleSizeInput.value + "px";
+      p.style.color = titleColorInput.value;
+    }
+  }
+
+  // Логика фона
+  if (colorInput && fileInput) {
+    if (fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        block.style.backgroundImage = `url(${e.target.result})`;
+        block.style.backgroundColor = "transparent";
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    } else if (colorInput.value) {
+      block.style.backgroundColor = colorInput.value;
+      block.style.backgroundImage = "none";
+    }
+  }
+
+  // Скрываем панель настроек
+  block.querySelector(".setting-prospects-bar")?.classList.add("hidden");
+}
+
+function buttonSettingClick(block) {
+  // Получаем значения из полей ввода
+  const fontSizeInput = block.querySelector(".input-setting-button-0");
+  const fontColorInput = block.querySelector(".button-color-0");
+  const bgColorInput = block.querySelector(".button-background-color");
+  const borderColorInput = block.querySelector(".button-border-color");
+  const fileInput = block.querySelector(".input-img-button");
+  const colorInput = block.querySelector(".button-color");
+
+  // Проверяем, что элементы существуют
+  if (!fontSizeInput || !fontColorInput || !bgColorInput || !borderColorInput) {
+    console.error("Input elements not found in button block.");
+    return;
+  }
+
+  // Применяем настройки
+  const buttonElement = block.querySelector(".button-a .really-button");
+  if (buttonElement) {
+    buttonElement.style.fontSize = fontSizeInput.value + "px";
+    buttonElement.style.color = fontColorInput.value;
+    buttonElement.style.backgroundColor = bgColorInput.value;
+    buttonElement.style.borderColor = borderColorInput.value;
+  }
+
+  // Логика фона блока
+  if (colorInput && fileInput) {
+    if (fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        block.style.backgroundImage = `url(${e.target.result})`;
+        block.style.backgroundColor = "transparent";
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    } else if (colorInput.value) {
+      block.style.backgroundColor = colorInput.value;
+      block.style.backgroundImage = "none";
+    }
+  }
+
+  // Скрываем панель настроек
+  block.querySelector(".setting-button-bar")?.classList.add("hidden");
+}
+
+function contactSettingClick(block) {
+  // Получаем значения из полей ввода
+  const headingSizeInput = block.querySelector(".input-setting-contact-0");
+  const subtitleSizeInput = block.querySelector(".input-setting-contact-1");
+  const headingColorInput = block.querySelector(".contact-color-0");
+  const subtitleColorInput = block.querySelector(".contact-color-1");
+  const contactsColorInput = block.querySelector(".contact-color-2");
+  const borderColorInput = block.querySelector(".contact-border-color");
+  const borderH2ColorInput = block.querySelector(".contact-h2-border-color");
+  const fileInput = block.querySelector(".input-img-contact");
+  const colorInput = block.querySelector(".contact-color");
+  const contactDiv = block.querySelector(".contact-data");
+
+  // Проверяем, что элементы существуют
+  if (
+    !headingSizeInput ||
+    !subtitleSizeInput ||
+    !headingColorInput ||
+    !subtitleColorInput ||
+    !contactsColorInput
+  ) {
+    console.error("Input elements not found in contact block.");
+    return;
+  }
+
+  // Применяем настройки
+  const contactData = block.querySelector(".contact-data");
+  if (contactData) {
+    const h2 = contactData.querySelector("h2");
+    const pList = contactData.querySelectorAll("p");
+    const pOnInfo = contactData.querySelectorAll("p.on-info");
+
+    if (h2) {
+      h2.style.fontSize = headingSizeInput.value + "px";
+      h2.style.color = headingColorInput.value;
+      contactDiv.style.borderColor = borderColorInput.value;
+      h2.style.setProperty("--c", borderH2ColorInput.value);
+    }
+
+    pList.forEach((p) => {
+      p.style.fontSize = subtitleSizeInput.value + "px";
+      p.style.color = contactsColorInput.value;
     });
 
-    inputs.fontColor.forEach((selector, index) => {
-        const input = block.querySelector(selector);
-        const title = titles[index];
-        if (input && title) {
-            title.style.color = input.value !== original.fontColor[index]
-                ? input.value
-                : original.fontColor[index];
-        }
+    pOnInfo.forEach((p) => {
+      p.style.color = subtitleColorInput.value;
     });
+  }
 
-    // Логика цвета границы
-    const borderColorInput = block.querySelector(inputs.borderColor);
-    const title1 = titles[1];
-    if (borderColorInput && title1) {
-        title1.style.borderColor = borderColorInput.value !== original.borderColor
-            ? borderColorInput.value
-            : original.borderColor;
+  // Логика фона
+  if (colorInput && fileInput) {
+    if (fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        block.style.backgroundImage = `url(${e.target.result})`;
+        block.style.backgroundColor = "transparent";
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    } else if (colorInput.value) {
+      block.style.backgroundColor = colorInput.value;
+      block.style.backgroundImage = "none";
     }
+  }
 
-    // Скрываем панель настроек
-    block.querySelector('.setting-header-bar')?.classList.add('hidden');
+  // Скрываем панель настроек
+  block.querySelector(".setting-contact-bar")?.classList.add("hidden");
 }
 
-function infoSettingClick() {
-    // Получаем значения из полей ввода
-    const headingSize = document.querySelector('.input-setting-info-0').value;
-    const titleSize = document.querySelector('.input-setting-info-1').value;
-
-    const headingColor = document.querySelector('.info-color-0').value;
-    const titleColor = document.querySelector('.info-color-1').value;
-    const headerBorderColor = document.querySelector('.info-border-color').value;
-    const headerBorderH2Color = document.querySelector('.info-h2-border-color').value;
-
-    // Применяем настройки к заголовкам
-    const titlesSection = document.querySelector('.info-div');
-
-    // Устанавливаем размеры шрифтов
-    titlesSection.querySelector('.info-h2').style.fontSize = headingSize + 'px';
-    titlesSection.querySelector('.info-p').style.fontSize = titleSize + 'px';
-
-    // Устанавливаем цвета шрифтов
-    titlesSection.querySelector('.info-h2').style.color = headingColor;
-    titlesSection.querySelector('.info-p').style.color = titleColor;
-    titlesSection.style.borderColor = headerBorderColor;
-    document.querySelector('.info-h2').style.setProperty('--c', headerBorderH2Color);
-
-    var fileInput = document.querySelector('.input-img-info');
-    var colorInput = document.querySelector('.info-color');
-    var reader = new FileReader();
-    if (colorInput.value && !fileInput.files[0]) {
-        // Если выбран цвет, удаляем фоновое изображение и устанавливаем цвет
-        document.querySelector('.info').style.backgroundColor = colorInput.value;
-        document.querySelector('.info').style.backgroundImage = 'none';
-    } else {
-        reader.onload = function (e) {
-            document.querySelector('.info').style.backgroundColor = 'transparent';
-            document.querySelector('.info').style.backgroundImage = `url(${e.target.result})`;
-        }
-        reader.readAsDataURL(fileInput.files[0]);
-    }
-    document.querySelector('.setting-info-bar').classList.add('hidden');
-}
-
-function prospectsSettingClick() {
-    // Получаем значения из полей ввода
-    const headingSize = document.querySelector('.input-setting-prospects-0').value;
-    const titleSize = document.querySelector('.input-setting-prospects-1').value;
-    const headingColor = document.querySelector('.prospects-color-0').value;
-    const titleColor = document.querySelector('.prospects-color-1').value;
-    const headerBorderColor = document.querySelector('.prospects-border-color').value;
-    const headerBorderH2Color = document.querySelector('.prospects-h2-border-color').value;
-
-    const titlesSection = document.querySelector('.prospects-div');
-
-    // Устанавливаем размеры шрифтов
-    titlesSection.querySelector('.prospects-h2').style.fontSize = headingSize + 'px';
-    titlesSection.querySelector('.prospects-p').style.fontSize = titleSize + 'px';
-
-    // Устанавливаем цвета шрифтов
-    titlesSection.querySelector('.prospects-h2').style.color = headingColor;
-    titlesSection.querySelector('.prospects-p').style.color = titleColor;
-    titlesSection.style.borderColor = headerBorderColor;
-    document.querySelector('.prospects-h2').style.setProperty('--c', headerBorderH2Color);
-
-    var fileInput = document.querySelector('.input-img-prospects');
-    var colorInput = document.querySelector('.prospects-color');
-    var reader = new FileReader();
-    if (colorInput.value && !fileInput.files[0]) {
-        // Если выбран цвет, удаляем фоновое изображение и устанавливаем цвет
-        document.querySelector('.prospects').style.backgroundColor = colorInput.value;
-        document.querySelector('.prospects').style.backgroundImage = 'none';
-    } else {
-        reader.onload = function (e) {
-            document.querySelector('.prospects').style.backgroundColor = 'transparent';
-            document.querySelector('.prospects').style.backgroundImage = `url(${e.target.result})`;
-        }
-        reader.readAsDataURL(fileInput.files[0]);
-    }
-    document.querySelector('.setting-prospects-bar').classList.add('hidden');
-}
-
-function buttonSettingClick() {
-    // Получаем значения из полей ввода
-    const headingSize = document.querySelector('.input-setting-button-0').value;
-    const headingColor = document.querySelector('.button-color-0').value;
-    const headerBackgroundColor = document.querySelector('.button-background-color').value;
-    const headerBorderColor = document.querySelector('.button-border-color').value;
-
-    // Применяем настройки к заголовкам
-    const titlesSection = document.querySelector('.button-a');
-
-    // Устанавливаем размеры шрифтов
-    titlesSection.querySelector('.really-button').style.fontSize = headingSize + 'px';
-
-    // Устанавливаем цвета шрифтов
-    titlesSection.querySelector('.really-button').style.color = headingColor;
-
-    document.querySelector('.really-button').style.borderColor = headerBorderColor;
-    document.querySelector('.really-button').style.backgroundColor = headerBackgroundColor;
-
-    var fileInput = document.querySelector('.input-img-button');
-    var colorInput = document.querySelector('.button-color');
-    var reader = new FileReader();
-    if (colorInput.value && !fileInput.files[0]) {
-        // Если выбран цвет, удаляем фоновое изображение и устанавливаем цвет
-        document.querySelector('.button').style.backgroundColor = colorInput.value;
-        document.querySelector('.button').style.backgroundImage = 'none';
-    } else {
-        reader.onload = function (e) {
-            document.querySelector('.button').style.backgroundColor = 'transparent';
-            document.querySelector('.button').style.backgroundImage = `url(${e.target.result})`;
-        }
-        reader.readAsDataURL(fileInput.files[0]);
-    }
-    document.querySelector('.setting-button-bar').classList.add('hidden');
-}
-
-function contactSettingClick() {
-    // Получаем значения из полей ввода
-    const headingSize = document.querySelector('.input-setting-contact-0').value;
-    const titleSize = document.querySelector('.input-setting-contact-1').value;
-    const headingColor = document.querySelector('.contact-color-0').value;
-    const titleColor = document.querySelector('.contact-color-1').value;
-    const infoColor = document.querySelector('.contact-color-2').value;
-    const headerBorderColor = document.querySelector('.contact-border-color').value;
-    const headerBorderH2Color = document.querySelector('.contact-h2-border-color').value;
-
-    // Применяем настройки к заголовкам
-    const titlesSection = document.querySelector('.contact-data');
-
-    if (titlesSection) {
-        const contactH2 = titlesSection.querySelector('h2');
-        const contactP = titlesSection.querySelectorAll('p');
-
-        if (contactH2) {
-            contactH2.style.fontSize = headingSize + 'px';
-            contactH2.style.color = headingColor;
-            contactH2.style.borderColor = headerBorderColor;
-            contactH2.style.setProperty('--c', headerBorderH2Color);
-        }
-
-        contactP.forEach(el => {
-            el.style.fontSize = titleSize + 'px';
-            el.style.color = infoColor;
-        });
-
-        titlesSection.querySelectorAll('p.on-info').forEach(el => el.style.color = titleColor);
-
-        // Применение границы
-        titlesSection.style.borderColor = headerBorderColor;
-    }
-
-    var fileInput = document.querySelector('.input-img-contact');
-    var colorInput = document.querySelector('.contact-color');
-    var reader = new FileReader();
-
-    if (colorInput.value && !fileInput.files[0]) {
-        // Если выбран цвет, удаляем фоновое изображение и устанавливаем цвет
-        document.querySelector('.contact').style.backgroundColor = colorInput.value;
-        document.querySelector('.contact').style.backgroundImage = 'none';
-    } else {
-        reader.onload = function (e) {
-            document.querySelector('.contact').style.backgroundColor = 'transparent';
-            document.querySelector('.contact').style.backgroundImage = `url(${e.target.result})`;
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-    }
-
-    document.querySelector('.setting-contact-bar').classList.add('hidden');
-}
+export {
+  headerSettingClick,
+  infoSettingClick,
+  prospectsSettingClick,
+  buttonSettingClick,
+  contactSettingClick,
+};

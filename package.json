@@ -17,5 +17,8 @@
     "url": "https://github.com/semakol/site-constructor/issues"
   },
   "homepage": "https://github.com/semakol/site-constructor#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "prettier": "3.5.3"
+  }
 }

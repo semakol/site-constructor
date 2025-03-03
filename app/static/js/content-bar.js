@@ -1,59 +1,69 @@
-function headerClick(event) {
-    const block = event.target.closest('.block');
-    if (block) {
-        const title0 = block.querySelector('.title-0');
-        const title1 = block.querySelector('.title-1');
-        const title2 = block.querySelector('.tile-2');
-        const inputTitle0 = block.querySelector('.input-title-0');
-        const inputTitle1 = block.querySelector('.input-title-1');
-        const inputTitle2 = block.querySelector('.input-title-2');
+function headerClick(block) {
+  // Используем block напрямую
+  const title0 = block.querySelector(".title-0");
+  const title1 = block.querySelector(".title-1");
+  const title2 = block.querySelector(".tile-2");
 
-        if (title0 && inputTitle0) title0.textContent = inputTitle0.value;
-        if (title1 && inputTitle1) title1.textContent = inputTitle1.value;
-        if (title2 && inputTitle2) title2.textContent = inputTitle2.value;
+  // Пример логики сохранения
+  title0.textContent = block.querySelector(".input-title-0").value;
+  title1.textContent = block.querySelector(".input-title-1").value;
+  title2.textContent = block.querySelector(".input-title-2").value;
 
-        const headerBar = block.querySelector('.header-bar');
-        if (headerBar) {
-            headerBar.classList.add('hidden');
-        }
-    }
+  // Скрываем панель
+  block.querySelector(".header-bar").classList.add("hidden");
 }
 
-function infoClick() {
-    // Обновление текстовых блоков
-    document.querySelector('.info-h2').textContent = document.querySelector('.input-info-0').value;
-    document.querySelector('.info-p').textContent = document.querySelector('.input-info-1').value;
+function infoClick(block) {
+  block.querySelector(".info-h2").textContent =
+    block.querySelector(".input-info-0").value;
+  block.querySelector(".info-p").textContent =
+    block.querySelector(".input-info-1").value;
 
-    document.querySelector('.info-bar').classList.add('hidden');
+  block.querySelector(".info-bar").classList.add("hidden");
 }
 
-function prospectsClick() {
-    // Обновление текстовых блоков
-    document.querySelector('.prospects-h2').textContent = document.querySelector('.input-prospects-0').value;
-    document.querySelector('.prospects-p').textContent = document.querySelector('.input-prospects-1').value;
+function prospectsClick(block) {
+  // Обновление текстовых блоков
+  block.querySelector(".prospects-h2").textContent =
+    block.querySelector(".input-prospects-0").value;
+  block.querySelector(".prospects-p").textContent =
+    block.querySelector(".input-prospects-1").value;
 
-    document.querySelector('.prospects-bar').classList.add('hidden');
+  block.querySelector(".prospects-bar").classList.add("hidden");
 }
 
-function buttonClick() {
-    // Обновление текстовых блоков
-    document.querySelector('.really-button').textContent = document.querySelector('.input-button-0').value;
-    document.querySelector('.button-a').href = document.querySelector('.input-button-1').value;
+function buttonClick(block) {
+  // Обновление текстовых блоков
+  block.querySelector(".really-button").textContent =
+    block.querySelector(".input-button-0").value;
+  block.querySelector(".button-a").href =
+    block.querySelector(".input-button-1").value;
 
-    document.querySelector('.button-bar').classList.add('hidden');
+  block.querySelector(".button-bar").classList.add("hidden");
 }
 
-function contactClick() {
-    // Обновление текстовых блоков
-    document.querySelector('.tel').textContent = document.querySelector('.input-contact-0').value;
-    document.querySelector('.email').textContent = document.querySelector('.input-contact-1').value;
-    document.querySelector('.addres').textContent = document.querySelector('.input-contact-2').value;
-    document.querySelector('.vk').textContent = document.querySelector('.input-contact-3').value;
-    document.querySelector('.vk').href = document.querySelector('.input-contact-3').value;
-    document.querySelector('.telegram').textContent = document.querySelector('.input-contact-4').value;
-    document.querySelector('.telegram').href = document.querySelector('.input-contact-4').value;
-    document.querySelector('.whatsap').textContent = document.querySelector('.input-contact-5').value;
-    document.querySelector('.whatsap').href = document.querySelector('.input-contact-5').value;
+function contactClick(block) {
+  // Обновление текстовых блоков
+  block.querySelector(".tel").textContent =
+    block.querySelector(".input-contact-0").value;
+  block.querySelector(".email").textContent =
+    block.querySelector(".input-contact-1").value;
+  block.querySelector(".addres").textContent =
+    block.querySelector(".input-contact-2").value;
+  block.querySelector(".vk").textContent =
+    block.querySelector(".input-contact-3").value;
+  block.querySelector(".vk").href =
+    block.querySelector(".input-contact-3").value;
+  block.querySelector(".telegram").textContent =
+    block.querySelector(".input-contact-4").value;
+  block.querySelector(".telegram").href =
+    block.querySelector(".input-contact-4").value;
+  block.querySelector(".whatsap").textContent =
+    block.querySelector(".input-contact-5").value;
+  block.querySelector(".whatsap").href =
+    block.querySelector(".input-contact-5").value;
 
-    document.querySelector('.contact-bar').classList.add('hidden');
+  block.querySelector(".contact-bar").classList.add("hidden");
 }
+
+export { headerClick, infoClick, prospectsClick, buttonClick, contactClick };
